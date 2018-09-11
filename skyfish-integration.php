@@ -35,3 +35,14 @@ $loader->register();
 
 // Start application
 new SkyfishIntegration\App();
+
+// Acf auto import and export
+add_action('plugins_loaded', function () {
+    $acfExportManager = new \AcfExportManager\AcfExportManager();
+    $acfExportManager->setTextdomain('skyfish-integration');
+    $acfExportManager->setExportFolder(MODULARITYSECTIONS_PATH . 'acf-fields/');
+    $acfExportManager->autoExport(array(
+        // 'base' => 'group_599eaa60c0e79',
+    ));
+    $acfExportManager->import();
+});
