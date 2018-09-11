@@ -6,7 +6,7 @@
 node_modules/
 
 # ignore composer vendor directory
-/vendor
+#/vendor
 
 # ignore composer lock file
 composer.lock
