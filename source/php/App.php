@@ -16,7 +16,7 @@ class App
      */
     public function enqueueStyles()
     {
-        wp_register_style('cache-bust-plugin-css', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('css/skyfish-integration.css'));
+        wp_register_style('skyfish-integration-css', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('css/skyfish-integration.css'));
     }
 
     /**
@@ -25,6 +25,6 @@ class App
      */
     public function enqueueScripts()
     {
-        wp_register_script('cache-bust-plugin-js', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('js/skyfish-integration.js'));
+        wp_register_script('skyfish-integration-js', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('js/skyfish-integration.js'));
     }
 }
