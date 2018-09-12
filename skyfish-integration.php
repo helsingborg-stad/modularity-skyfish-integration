@@ -40,9 +40,25 @@ new SkyfishIntegration\App();
 add_action('plugins_loaded', function () {
     $acfExportManager = new \AcfExportManager\AcfExportManager();
     $acfExportManager->setTextdomain('skyfish-integration');
-    $acfExportManager->setExportFolder(MODULARITYSECTIONS_PATH . 'acf-fields/');
+    $acfExportManager->setExportFolder(SKYFISHINTEGRATION_PATH . 'acf-fields/');
     $acfExportManager->autoExport(array(
         // 'base' => 'group_599eaa60c0e79',
     ));
     $acfExportManager->import();
+});
+
+//Registers the module
+add_action('plugins_loaded', function () {
+    if (function_exists('modularity_register_module')) {
+        modularity_register_module(
+            SKYFISHINTEGRATION_PATH . 'Source/php/Module/',
+            'Skyfish'
+        );
+    }
+});
+
+// Add module template dir
+add_filter('Modularity/Module/TemplatePath', function ($paths) {
+    $paths[] = SKYFISHINTEGRATION_PATH . 'Source/php/Module/views/';
+    return $paths;
 });

@@ -6,8 +6,8 @@ class App
 {
     public function __construct()
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'));
-        add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueueStyles'), 5);
+        add_action('wp_enqueue_scripts', array($this, 'enqueueScripts'), 5);
     }
 
     /**
@@ -25,6 +25,6 @@ class App
      */
     public function enqueueScripts()
     {
-        wp_register_script('skyfish-integration-js', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('js/skyfish-integration.js'));
+        wp_register_script('skyfish-integration-js', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('js/skyfish-integration.js'), array('jquery'));
     }
 }
