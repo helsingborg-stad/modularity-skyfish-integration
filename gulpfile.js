@@ -32,7 +32,6 @@ const buffer        = require('vinyl-buffer');
 const babelify      = require("babelify");
 const es            = require('event-stream');
 
-
 // ==========================================================================
 // Default Task
 // ==========================================================================
@@ -65,17 +64,18 @@ gulp.task('watch', function() {
     gulp.watch('source/sass/**/*.scss', ['build:sass']);
 });
 
-
 // ==========================================================================
 // SASS Task
 // ==========================================================================
 gulp.task('sass', function() {
+    var filePath = 'source/sass/';
     var files = [
-        'source/sass/skyfish-integration.scss'
+        'skyfish-integration.scss',
+        'skyfish-integration-admin.scss'
     ];
 
     var tasks = files.map(function(entry) {
-        return gulp.src(entry)
+        return gulp.src(filePath + entry)
             .pipe(plumber())
             .pipe(sourcemaps.init())
             .pipe(sass().on('error', function(err) {
@@ -99,12 +99,14 @@ gulp.task('sass', function() {
 // Scripts Task
 // ==========================================================================
 gulp.task('scripts', function() {
+    var filePath = 'source/js/';
     var files = [
-        'source/js/skyfish-integration.js'
+        'SkyfishIntegration.js',
+        'SkyfishIntegrationAdmin.js'
     ];
     var tasks = files.map(function(entry) {
         return browserify({
-                entries: [entry],
+                entries: [filePath + entry],
                 debug: true
             })
             .transform(reactify, {"es6": true})
