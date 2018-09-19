@@ -61,8 +61,7 @@ gulp.task('build:scripts', function(callback) {
 // Watch Task
 // ==========================================================================
 gulp.task('watch', function() {
-    gulp.watch('source/js/**/*.js', ['build:scripts']);
-    gulp.watch('source/js/**/*.jsx', ['build:scripts']);
+    gulp.watch(['source/js/**/*.js', 'source/js/**/*.jsx'], ['build:scripts']);
     gulp.watch('source/sass/**/*.scss', ['build:sass']);
 });
 
@@ -71,21 +70,29 @@ gulp.task('watch', function() {
 // SASS Task
 // ==========================================================================
 gulp.task('sass', function() {
-    return gulp.src('source/sass/skyfish-integration.scss')
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', function(err) {
-            console.log(err.message);
-            notifier.notify({
-              'title': 'SASS Compile Error',
-              'message': err.message
-            });
-        }))
-        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/css'))
-        .pipe(cleanCSS({debug: true}))
-        .pipe(gulp.dest('dist/.tmp/css'));
+    var files = [
+        'source/sass/skyfish-integration.scss'
+    ];
+
+    var tasks = files.map(function(entry) {
+        return gulp.src(entry)
+            .pipe(plumber())
+            .pipe(sourcemaps.init())
+            .pipe(sass().on('error', function(err) {
+                console.log(err.message);
+                notifier.notify({
+                  'title': 'SASS Compile Error',
+                  'message': err.message
+                });
+            }))
+            .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+            .pipe(sourcemaps.write())
+            .pipe(gulp.dest('dist/css'))
+            .pipe(cleanCSS({debug: true}))
+            .pipe(gulp.dest('dist/.tmp/css'));
+    });
+
+    return es.merge.apply(null, tasks);
 });
 
 // ==========================================================================
