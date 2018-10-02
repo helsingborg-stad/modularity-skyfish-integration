@@ -1,4 +1,6 @@
 {
-  "css/skyfish-integration.css": "css/skyfish-integration-d41d8cd98f.css",
-  "js/skyfish-integration.js": "js/skyfish-integration-72b71bff0d.js"
+  "css/skyfish-integration-admin.css": "css/skyfish-integration-admin-d41d8cd98f.css",
+  "css/skyfish-integration.css": "css/skyfish-integration-afd71ccd07.css",
+  "js/SkyfishIntegration.js": "js/SkyfishIntegration-b078cb10f6.js",
+  "js/SkyfishIntegrationAdmin.js": "js/SkyfishIntegrationAdmin-593a4fcbca.js"
 }

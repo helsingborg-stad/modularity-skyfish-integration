@@ -28,8 +28,32 @@ class Skyfish extends \Modularity\Module
 
     public function script()
     {
-        wp_enqueue_script('skyfish-integration-js');
 
+        \SkyfishIntegration\Helper\React::enqueue();
+
+        wp_enqueue_script('skyfish-integration-js');
+        wp_localize_script('skyfish-integration-js', 'skyfishData', $this->scriptData());
+    }
+
+    public function scriptData()
+    {
+        $data = array();
+
+        $data['nonce'] = wp_create_nonce('skyfishIntegration');
+
+        $login = 'webmaster@helsingborg.se';
+        $password = '';
+        $key = 'arWJEqkxdJZmhupr5Ih4vuieGpFjqKPBlJZI1z9xPAP3acKRNnTMZKwWHCa7G37Z';
+        $secret = 'NDXmdfEwAJVzLeXJ3FOLt1HiDAySRxJIKa753KHfqL661fXTSux8WbKeoVkqpL2i';
+        $url = 'https://api.colourbox.com';
+
+        $api = new \SkyfishIntegration\Api($login, $password, $key, $secret, $url);
+
+        $data['authToken'] = $api->token;
+        $data['baseUrl'] = $api->url;
+
+        //Send to script
+        return $data;
     }
 
     public function style()

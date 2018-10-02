@@ -112,7 +112,7 @@ gulp.task('scripts', function() {
             .transform(reactify, {"es6": true})
             .bundle()
             .on('error', function(err){
-                console.log(err.stack);
+                console.log(err.message);
 
                 notifier.notify({
                   'title': 'Compile Error',
@@ -127,7 +127,7 @@ gulp.task('scripts', function() {
             .pipe(sourcemaps.init())
             .pipe(sourcemaps.write())
             .pipe(gulp.dest('dist/js'))
-            .pipe(uglify())
+            // .pipe(uglify())
             .pipe(gulp.dest('dist/.tmp/js'));
     });
 
