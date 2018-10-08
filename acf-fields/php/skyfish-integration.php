@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_5bba400a04b6c',
-    'title' => __('Modularity Module: Skyfish Integration', 'skyfish-integration'),
+    'title' => __('Skyfish Integration - Settings', 'skyfish-integration'),
     'fields' => array(
         0 => array(
             'key' => 'field_5bba400d10454',
