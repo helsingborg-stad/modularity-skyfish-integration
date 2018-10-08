@@ -16,7 +16,8 @@ module.exports = class extends React.Component {
             currentPage:  0,
             totalPages: 0,
             showDetails: false,
-            searchString: ''
+            searchString: '',
+            hits: 0
         }
 
         this.fetchPosts = this.fetchPosts.bind(this);
@@ -79,7 +80,8 @@ module.exports = class extends React.Component {
             return {
                 posts: posts,
                 totalPages: Math.ceil(result.response.hits / state.postsPerPage),
-                currentPage: (result.media_offset == 0 ? 1 : (result.media_offset / state.postsPerPage) + 1)
+                currentPage: (result.media_offset == 0 ? 1 : (result.media_offset / state.postsPerPage) + 1),
+                hits: result.response.hits
             };
         });
     }
@@ -270,7 +272,8 @@ module.exports = class extends React.Component {
                         id: media.id,
                         imageSrc: media.thumbnail
                     };
-                })
+                }),
+                hits: this.state.hits
             }
         };
 
