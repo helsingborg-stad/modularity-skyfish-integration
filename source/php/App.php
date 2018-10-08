@@ -6,25 +6,29 @@ class App
 {
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', array($this, 'enqueueStyles'), 5);
-        add_action('wp_enqueue_scripts', array($this, 'enqueueScripts'), 5);
+        add_action('wp_enqueue_scripts', array($this, 'registerFrontendAssets'), 5);
+        add_action('admin_enqueue_scripts', array($this, 'registerAdminAssets'), 5);
     }
 
     /**
-     * Enqueue required style
+     * Register required frontend scripts
      * @return void
      */
-    public function enqueueStyles()
+    public function registerFrontendAssets()
     {
+        wp_register_script('skyfish-integration-js', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('js/SkyfishIntegration.js'), array('jquery', 'react', 'react-dom'));
+
         wp_register_style('skyfish-integration-css', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('css/skyfish-integration.css'));
     }
 
     /**
-     * Enqueue required scripts
+     * Register required admin scripts & styles
      * @return void
      */
-    public function enqueueScripts()
+    public function registerAdminAssets()
     {
-        wp_register_script('skyfish-integration-js', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('js/skyfish-integration.js'), array('jquery'));
+        wp_register_script('skyfish-integration-admin-js', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('js/SkyfishIntegrationAdmin.js'), array('jquery', 'react', 'react-dom'));
+
+        wp_register_style('skyfish-integration-admin.css', SKYFISHINTEGRATION_URL . '/dist/' . \SkyfishIntegration\Helper\CacheBust::name('css/skyfish-integration-admin.css'));
     }
 }
