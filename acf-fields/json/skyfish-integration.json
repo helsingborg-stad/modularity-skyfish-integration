@@ -1,0 +1,52 @@
+[{
+    "key": "group_5bba400a04b6c",
+    "title": "Modularity Module: Skyfish Integration",
+    "fields": [
+        {
+            "key": "field_5bba400d10454",
+            "label": "Select folder",
+            "name": "skyfish_folder",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "424682": "Public",
+                "819213": "Videoklipp",
+                "845327": "CC BY-bilder",
+                "1296342": "Trash",
+                "1297856": "Api"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mod-skyfish-gallery"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+}]
+

@@ -10,6 +10,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'registerAdminAssets'), 5);
 
         new \SkyfishIntegration\Admin\AuthPage();
+        new \SkyfishIntegration\Admin\DynamicFields();
     }
 
     /**

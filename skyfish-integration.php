@@ -42,7 +42,7 @@ add_action('plugins_loaded', function () {
     $acfExportManager->setTextdomain('skyfish-integration');
     $acfExportManager->setExportFolder(SKYFISHINTEGRATION_PATH . 'acf-fields/');
     $acfExportManager->autoExport(array(
-        // 'base' => 'group_599eaa60c0e79',
+        'skyfish-integration' => 'group_5bba400a04b6c',
     ));
     $acfExportManager->import();
 });
