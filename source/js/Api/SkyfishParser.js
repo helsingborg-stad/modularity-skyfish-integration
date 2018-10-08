@@ -3,7 +3,7 @@
 const $ = jQuery.noConflict();
 
 module.exports = class {
-    constructor(authToken, baseUrl)
+    constructor(authToken, baseUrl, rootFolder = null)
     {
         if (typeof(authToken) == 'undefined' || !authToken) {
             return;
@@ -11,7 +11,7 @@ module.exports = class {
 
         this.authToken = authToken;
         this.baseUrl = baseUrl;
-        this.rootFolder = this.getRootFolderId();
+        this.rootFolder = rootFolder || this.getRootFolderId();
         this.commonFields = [
             'filename',
             'width',
@@ -49,24 +49,28 @@ module.exports = class {
 
     searchInFolder(searchString, successCallback, mediaCount, mediaOffset)
     {
-        this.requestHook('get', '/search', {
+        let args = {
             return_values: this.commonFields,
             folder_ids: this.rootFolder,
             media_count: mediaCount,
             media_offset: mediaOffset,
-            q: searchString
-        }, successCallback);
+            q: searchString,
+            date_filter_field: 'camera_created'
+        };
+
+        this.requestHook('get', '/search', args, successCallback);
     }
 
     getFolder(successCallback, mediaCount, mediaOffset)
     {
-        this.requestHook('get', '/search', {
+        let args = {
             return_values: this.commonFields,
             folder_ids: this.rootFolder,
             media_count: mediaCount,
-            media_offset: mediaOffset
-
-        }, successCallback);
+            media_offset: mediaOffset,
+            date_filter_field: 'camera_created'
+        };
+        this.requestHook('get', '/search', args, successCallback);
     }
 
     requestHook(type, path, data = {}, successCallback)
