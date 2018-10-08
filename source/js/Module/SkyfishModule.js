@@ -2,7 +2,7 @@
 
 import SkyfishModuleBrowser from './SkyfishModuleBrowser.js';
 import SkyfishModuleDetails from './SkyfishModuleMediaDetails.js';
-import {forceDownload} from '../Helper/files.js';
+import {forceDownload, formatBytes} from '../Helper/files.js';
 import {reSize} from '../Helper/ratio.js';
 
 module.exports = class extends React.Component {
@@ -69,7 +69,10 @@ module.exports = class extends React.Component {
                     fileName: media.filename,
                     thumbnail: media.thumbnail_url_ssl || media.thumbnail_url,
                     index: index,
-                    sizes: this.getSizes(media.width, media.height, media.unique_media_id, media.filename)
+                    sizes: this.getSizes(media.width, media.height, media.unique_media_id, media.filename),
+                    fileSize: media.file_disksize,
+                    width: media.width,
+                    height: media.height
                 };
             });
 
@@ -276,23 +279,34 @@ module.exports = class extends React.Component {
             downloadImage: this.downloadImage.bind(this)
         };
 
+        const currentPost = this.state.posts[this.state.currentPost];
         let detailsData =  {};
-        if (typeof(this.state.posts[this.state.currentPost]) != 'undefined') {
+        if (typeof(currentPost) != 'undefined') {
             detailsData =  {
-                title: this.state.posts[this.state.currentPost].fileName || '',
-                preview: this.state.posts[this.state.currentPost].thumbnail_large || '',
-                description: this.state.posts[this.state.currentPost].description || '',
-                keywords: this.state.posts[this.state.currentPost].keywords || '',
-                publishDate: this.state.posts[this.state.currentPost].publishDate || '',
-                sizes: this.state.posts[this.state.currentPost].sizes || '',
-                id: this.state.posts[this.state.currentPost].id || '',
+                title: currentPost.fileName || '',
+                preview: currentPost.thumbnail_large || '',
+                description: currentPost.description || '',
+                keywords: currentPost.keywords || '',
+                publishDate: currentPost.publishDate || '',
+                sizes: currentPost.sizes || '',
+                id: currentPost.id || '',
+                meta: {
+                    'Taken': String(currentPost.takenDate).replace('/:/gm', '-') || '',
+                    'Uploaded': currentPost.publishDate || '',
+                    'Resolution': currentPost.width + ' x ' + currentPost.height + ' px' || '',
+                    'Size':  formatBytes(currentPost.fileSize) || '',
+                    'Photographer': currentPost.photographer || '',
+                    'Mime Type': currentPost.mimeType || ''
+                }
             };
         }
 
         return (
             <div className={this.state.showDetails ? 'skyfish-module show-details' : 'skyfish-module'}>
                 <div className="skyfish-module__index">
-                    <SkyfishModuleBrowser action={skyfishModuleIndex.action} data={skyfishModuleIndex.data} />
+                    <SkyfishModuleBrowser
+                        action={skyfishModuleIndex.action}
+                        data={skyfishModuleIndex.data} />
                 </div>
                 <div className="skyfish-module__details">
                     <SkyfishModuleDetails
