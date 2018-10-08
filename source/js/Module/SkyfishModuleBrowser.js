@@ -40,7 +40,7 @@ module.exports = class extends React.Component {
         return (
             <div>
                 <div className="grid u-mb-4">
-                    <div className="grid-xs-12 grid-md-auto">
+                    <div className="grid-xs-12 grid-md-auto u-mb-2 u-mb-0@md u-mb-0@lg u-mb-0@xl">
                         <SearchForm
                             searchMethod={this.props.action.searchInput}
                             submitSearchMethod={this.props.action.submitSearch}
