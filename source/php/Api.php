@@ -5,10 +5,8 @@ namespace SkyfishIntegration;
 class Api
 {
     public $token = '';
-
-    public $url = '';
-
-    protected $login, $password, $key, $secret;
+    public $url = 'https://api.colourbox.com';
+    public $login, $password, $key, $secret;
 
     public function authenticate()
     {
@@ -29,7 +27,6 @@ class Api
             $this->password = $credentials['skyfish_password'];
             $this->key = $credentials['api_key'];
             $this->secret = $credentials['api_secret'];
-            $this->url = 'https://api.colourbox.com';
             $this->token = $this->generateToken();
 
             return true;
