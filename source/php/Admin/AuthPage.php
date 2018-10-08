@@ -30,11 +30,11 @@ class AuthPage
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueueReactAuthForm'), 10);
         add_action('admin_menu', array($this, 'setupAdminPage'));
-        add_action('wp_ajax_skyfishAuthenticateClient', array($this, 'authenticateClient'));
-        add_action('wp_ajax_skyfishRemoveClient', array($this, 'removeClient'));
+        add_action('wp_ajax_skyfishAuthenticateClient', array($this, 'skyfishAuthenticateClient'));
+        add_action('wp_ajax_skyfishRemoveClient', array($this, 'skyfishRemoveClient'));
     }
 
-    public function authenticateClient()
+    public function skyfishAuthenticateClient()
     {
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             return false;
@@ -64,13 +64,12 @@ class AuthPage
             }
         }
 
-        $api = new \SkyfishIntegration\Api(
-            $credentials['skyfish_login'],
-            $credentials['skyfish_password'],
-            $credentials['api_key'],
-            $credentials['api_secret'],
-            'https://api.colourbox.com'
-        );
+        $api = new \SkyfishIntegration\Api();
+        $api->login = $credentials['skyfish_login'];
+        $api->password = $credentials['skyfish_password'];
+        $api->key = $credentials['api_key'];
+        $api->secret = $credentials['api_secret'];
+        $api->token = $api->generateToken();
 
         //Failed to generate token
         if (!$api->token) {
@@ -96,7 +95,7 @@ class AuthPage
         die;
     }
 
-    public function removeClient()
+    public function skyfishRemoveClient()
     {
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             return false;
