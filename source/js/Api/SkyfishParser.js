@@ -25,6 +25,14 @@ module.exports = class {
             'unique_media_id',
             'thumbnail_url_ssl'
         ];
+
+        this.commonArgs = {
+            return_values: this.commonFields,
+            folder_ids: this.rootFolder,
+            date_filter_field: 'camera_created',
+            direction: 'desc',
+            order: 'created'
+        };
     }
 
     getRootFolderId()
@@ -49,27 +57,19 @@ module.exports = class {
 
     searchInFolder(searchString, successCallback, mediaCount, mediaOffset)
     {
-        let args = {
-            return_values: this.commonFields,
-            folder_ids: this.rootFolder,
-            media_count: mediaCount,
-            media_offset: mediaOffset,
-            q: searchString,
-            date_filter_field: 'camera_created'
-        };
-
+        let args = this.commonArgs;
+        args.media_count = mediaCount;
+        args.media_offset = mediaOffset;
+        args.q = searchString;
         this.requestHook('get', '/search', args, successCallback);
     }
 
     getFolder(successCallback, mediaCount, mediaOffset)
     {
-        let args = {
-            return_values: this.commonFields,
-            folder_ids: this.rootFolder,
-            media_count: mediaCount,
-            media_offset: mediaOffset,
-            date_filter_field: 'camera_created'
-        };
+        let args = this.commonArgs;
+        args.media_count = mediaCount;
+        args.media_offset = mediaOffset;
+
         this.requestHook('get', '/search', args, successCallback);
     }
 
