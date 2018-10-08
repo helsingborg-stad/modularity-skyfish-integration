@@ -34,12 +34,22 @@ module.exports = class extends React.Component {
         ));
 
         // const SearchBar = this.SearchBar;
-        const Breadcrumb = (props) => <span>Breadcrumb</span>;
+        const Breadcrumb = (props) => {
+            const {hits, postsPerPage, currentPage, totalPages} = props;
+
+            return (
+                <span>
+                    Found <b>{hits}</b> items, page {currentPage} of {totalPages}.
+                </span>
+            );
+        }
+
+
         const SortBy = (props) => <span>SortBy</span>;
 
         return (
             <div>
-                <div className="grid u-mb-4">
+                <div className="grid u-mb-3">
                     <div className="grid-xs-12 grid-md-auto u-mb-2 u-mb-0@md u-mb-0@lg u-mb-0@xl">
                         <SearchForm
                             searchMethod={this.props.action.searchInput}
@@ -50,14 +60,19 @@ module.exports = class extends React.Component {
                         <Pagination />
                     </div>
                 </div>
-{/*                <div className="grid">
+                <div className="grid u-mb-3">
                     <div className="grid-xs-auto">
-                        <Breadcrumb />
+                        <Breadcrumb
+                            hits={this.props.data.hits}
+                            postsPerPage={this.props.data.postsPerPage}
+                            currentPage={this.props.data.currentPage}
+                            totalPages={this.props.data.totalPages}
+                        />
                     </div>
                     <div className="grid-fit-content">
-                        <SortBy />
+                        {/*<SortBy />*/}
                     </div>
-                </div>*/}
+                </div>
 
                 <div className="grid grid--columns">
                     {items}
