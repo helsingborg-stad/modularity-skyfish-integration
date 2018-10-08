@@ -40,13 +40,13 @@ module.exports = class extends React.Component {
         return (
             <div>
                 <div className="grid u-mb-4">
-                    <div className="grid-xs-auto">
+                    <div className="grid-xs-12 grid-md-auto">
                         <SearchForm
                             searchMethod={this.props.action.searchInput}
                             submitSearchMethod={this.props.action.submitSearch}
                         />
                     </div>
-                    <div className="grid-fit-content">
+                    <div className="grid-xs-12 grid-md-fit-content">
                         <Pagination />
                     </div>
                 </div>
