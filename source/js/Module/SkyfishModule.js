@@ -302,7 +302,7 @@ module.exports = class extends React.Component {
         }
 
         return (
-            <div className={this.state.showDetails ? 'skyfish-module show-details' : 'skyfish-module'}>
+            <div className={this.state.showDetails ? 'skyfish-module u-pt-4 show-details' : 'skyfish-module u-pt-4'}>
                 <div className="skyfish-module__index">
                     <SkyfishModuleBrowser
                         action={skyfishModuleIndex.action}
