@@ -13,7 +13,7 @@ module.exports = (props) => {
                 <div className="c-card__footer">
                     <div className="grid">
                         <div className="grid-xs-auto">
-                            {props.object.name}
+                            {props.object.title}
                         </div>
                         <div className="grid-fit-content">
                             <a onClick={props.clickDownload} href={props.object.download || ''} data-media-object={JSON.stringify(props.object)} className="c-card__link">Download</a>
