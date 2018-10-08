@@ -9,9 +9,9 @@ const Keywords = (props) => {
     let keywords = props.words.map((word, index) => (<span key={index}>#{word} </span>));
 
     return (
-        <div className="u-mt-2">
+        <div className="u-mt-3">
             <h4>Keywords</h4>
-            {keywords}
+            <p>{keywords}</p>
         </div>
     );
 };
@@ -32,7 +32,7 @@ const Downloads = (props) => {
     });
 
     return (
-        <div className="u-mt-2">
+        <div className="u-mt-3">
         <Dropdown
             toggleClass="btn btn-primary btn-block"
             title="Download"
@@ -50,7 +50,7 @@ const MetaList = (props) => {
     }
 
     return (
-        <div className="u-mt-2">
+        <div className="u-mt-3">
             <h4>Details</h4>
             <table>
                 <tbody>
