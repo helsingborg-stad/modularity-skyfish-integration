@@ -8,6 +8,8 @@ class App
     {
         add_action('wp_enqueue_scripts', array($this, 'registerFrontendAssets'), 5);
         add_action('admin_enqueue_scripts', array($this, 'registerAdminAssets'), 5);
+
+        new \SkyfishIntegration\Admin\AuthPage();
     }
 
     /**
