@@ -1,2 +1,1 @@
-<h4>skyfish.blade.php</h4>
-<div id="example-component"></div>
+<div id="skyfish-module"></div>

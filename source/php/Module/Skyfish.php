@@ -17,6 +17,7 @@ class Skyfish extends \Modularity\Module
     public function data() : array
     {
         $data = array();
+
         //Send to view
         return $data;
     }
@@ -28,8 +29,32 @@ class Skyfish extends \Modularity\Module
 
     public function script()
     {
-        wp_enqueue_script('skyfish-integration-js');
+        \SkyfishIntegration\Helper\React::enqueue();
 
+        wp_enqueue_script('skyfish-integration-js');
+        wp_localize_script('skyfish-integration-js', 'skyfishData', $this->scriptData());
+    }
+
+    public function scriptData()
+    {
+        $data = array();
+
+        $data['nonce'] = wp_create_nonce('skyfishIntegration');
+
+        $api = new \SkyfishIntegration\Api();
+        $api->authenticate();
+
+        if ($api->token) {
+            $data['authToken'] = $api->token;
+            $data['baseUrl'] = $api->url;
+        }
+
+        if (get_field('skyfish_folder', $this->data['ID'])) {
+            $data['rootFolder'] = get_field('skyfish_folder',$this->data['ID']);
+        }
+
+        //Send to script
+        return $data;
     }
 
     public function style()
