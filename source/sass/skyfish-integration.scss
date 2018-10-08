@@ -1,5 +1,3 @@
-
-
 .skyfish-module {
     overflow: hidden;
     position: relative;
@@ -63,7 +61,6 @@
     }
 }
 
-
 .c-card.c-card--skyfish {
     .c-card__footer {
         background: white;
@@ -78,4 +75,29 @@
         height: 100%;
         width: auto;
     }
+}
+
+
+.skyfish-module .skyfish-module__details {
+    .c-dropdown .c-dropdown__menu {
+        border: solid 1px #dedede;
+         min-width: 240px;
+    }
+}
+.skyfish-module {
+    .skyfish-module__goback {
+        display: flex;
+        i {
+            margin-right: 8px;
+        }
+    }
+
+    .link:hover {
+        cursor: pointer;
+    }
+}
+
+
+.skyfish-module__pagination-input {
+    max-width: 48px;
 }
