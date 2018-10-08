@@ -1,5 +1,5 @@
 {
-    "name": "helsingborg-stad/skyfish-integration",
+    "name": "helsingborg-stad/modularity-skyfish-integration",
     "description": "Skyfish integration for Wordpress",
     "type": "wordpress-plugin",
     "license": "MIT",
