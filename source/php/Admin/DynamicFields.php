@@ -13,12 +13,12 @@ class DynamicFields
     {
         $api = new \SkyfishIntegration\Api();
 
+        //Reset choices
+        $field['choices'] = array();
+
         if (!$api->authenticate()) {
             return $field;
         }
-
-        //Reset choices
-        $field['choices'] = array();
 
         if (is_array($api->getFolders()) && !empty($api->getFolders())) {
             foreach ($api->getFolders() as $folder) {
