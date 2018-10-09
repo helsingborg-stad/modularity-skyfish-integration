@@ -66,9 +66,10 @@ module.exports = class {
 
     getFolder(successCallback, mediaCount, mediaOffset)
     {
-        let args = this.commonArgs;
+        var args = this.commonArgs;
         args.media_count = mediaCount;
         args.media_offset = mediaOffset;
+        delete args.q;
 
         this.requestHook('get', '/search', args, successCallback);
     }

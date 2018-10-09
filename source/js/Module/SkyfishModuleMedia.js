@@ -1,6 +1,6 @@
 module.exports = (props) => {
     return (
-        <div className="grid-xs-6 grid-md-3">
+        <div className="grid-xs-12 grid-sm-6 grid-lg-3">
             <div className="c-card c-card--skyfish c-card--action">
                 <div className="ratio-4-3 overflow-hidden">
                     <img
@@ -12,7 +12,7 @@ module.exports = (props) => {
                 </div>
                 <div className="c-card__footer">
                     <div className="grid">
-                        <div className="grid-xs-auto">
+                        <div className="grid-xs-12 grid-lg-auto truncate">
                             {props.object.title}
                         </div>
                         <div className="grid-fit-content">

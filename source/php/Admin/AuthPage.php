@@ -28,11 +28,97 @@ class AuthPage
 
     public function __construct()
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueueReactAuthForm'), 10);
         add_action('admin_menu', array($this, 'setupAdminPage'));
+        add_action('admin_enqueue_scripts', array($this, 'enqueueReactAuthForm'), 10);
         add_action('wp_ajax_skyfishAuthenticateClient', array($this, 'skyfishAuthenticateClient'));
         add_action('wp_ajax_skyfishRemoveClient', array($this, 'skyfishRemoveClient'));
     }
+
+    public function setupAdminPage()
+    {
+        add_options_page(
+            self::$adminPageName,
+            self::$adminPageName,
+            'manage_options',
+            sanitize_title(self::$adminPageName),
+            array($this, 'renderReactWrapper')
+        );
+    }
+
+    public function renderReactWrapper()
+    {
+        $output = '';
+        $output .= '<div class="wrap">';
+        $output .= '<h1>' . self::$adminPageName . '</h1>';
+        $output .= '<div id="root"></div>';
+        $output .= '</div>';
+
+
+        echo $output;
+    }
+
+    public function enqueueReactAuthForm()
+    {
+        if (!self::isAuthenticationPage()) {
+            return;
+        }
+
+        //Enque react & react-dom
+        \SkyfishIntegration\Helper\React::enqueue();
+
+        wp_enqueue_script('skyfish-integration-admin-js', '', [], null, true);
+        wp_localize_script('skyfish-integration-admin-js', 'skyfishAdminData', $this->skyfishAdminDataController());
+    }
+
+
+    public function skyfishAdminDataController()
+    {
+        $data = array(
+            'nonce' => wp_create_nonce(sanitize_title(self::$adminPageName)),
+            'fields' => self::getAuthFormFields(),
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'authenticated' => (get_option('skyfish_authorised') && get_option('skyfish_authorised') == true ? true : false)
+        );
+
+        return $data;
+    }
+
+    public static function getAuthFormFields()
+    {
+        //Already authorized
+        if (get_option('skyfish_authorised') && get_option('skyfish_authorised') == true) {
+            //Get values from DB
+            $credentials = get_option('skyfish_credentials');
+
+            //Exclude sensitive fields
+            $fields = array_filter(self::$authFormFields, function($field) {
+                return !in_array($field['id'], self::$sensetiveAuthFormFields);
+            });
+
+            return array_map(function($field) use ($credentials) {
+                //Make labels translatable
+                if (isset($field['label']) && is_string($field['label']) && !empty($field['label'])) {
+                    $field['label'] = __($field['label']);
+                }
+                //Append field values from DB and set to read-only
+                if (isset($credentials[$field['id']])) {
+                    $field['value'] = $credentials[$field['id']];
+                    $field['readOnly'] = true;
+                }
+                return $field;
+            }, $fields);
+        }
+
+        //Not authorized
+        return array_map(function($field) {
+            //Make labels translatable
+            if (isset($field['label']) && is_string($field['label']) && !empty($field['label'])) {
+                $field['label'] = __($field['label']);
+            }
+            return $field;
+        }, self::$authFormFields);
+    }
+
 
     public function skyfishAuthenticateClient()
     {
@@ -116,91 +202,6 @@ class AuthPage
         ]);
 
         die;
-    }
-
-    public function skyfishAdminDataController()
-    {
-        $data = array(
-            'nonce' => wp_create_nonce(sanitize_title(self::$adminPageName)),
-            'fields' => self::getAuthFormFields(),
-            'ajaxUrl' => admin_url('admin-ajax.php'),
-            'authenticated' => (get_option('skyfish_authorised') && get_option('skyfish_authorised') == true ? true : false)
-        );
-
-        return $data;
-    }
-
-
-    public static function getAuthFormFields()
-    {
-        //Already authorized
-        if (get_option('skyfish_authorised') && get_option('skyfish_authorised') == true) {
-            //Get values from DB
-            $credentials = get_option('skyfish_credentials');
-
-            //Exclude sensitive fields
-            $fields = array_filter(self::$authFormFields, function($field) {
-                return !in_array($field['id'], self::$sensetiveAuthFormFields);
-            });
-
-            return array_map(function($field) use ($credentials) {
-                //Make labels translatable
-                if (isset($field['label']) && is_string($field['label']) && !empty($field['label'])) {
-                    $field['label'] = __($field['label']);
-                }
-                //Append field values from DB and set to read-only
-                if (isset($credentials[$field['id']])) {
-                    $field['value'] = $credentials[$field['id']];
-                    $field['readOnly'] = true;
-                }
-                return $field;
-            }, $fields);
-        }
-
-        //Not authorized
-        return array_map(function($field) {
-            //Make labels translatable
-            if (isset($field['label']) && is_string($field['label']) && !empty($field['label'])) {
-                $field['label'] = __($field['label']);
-            }
-            return $field;
-        }, self::$authFormFields);
-    }
-
-    public function setupAdminPage()
-    {
-        add_options_page(
-            self::$adminPageName,
-            self::$adminPageName,
-            'manage_options',
-            sanitize_title(self::$adminPageName),
-            array($this, 'renderAdminPageContent')
-        );
-    }
-
-    public function renderAdminPageContent()
-    {
-        $output = '';
-        $output .= '<div class="wrap">';
-        $output .= '<h1>' . self::$adminPageName . '</h1>';
-        $output .= '<div id="root"></div>';
-        $output .= '</div>';
-
-
-        echo $output;
-    }
-
-    public function enqueueReactAuthForm()
-    {
-        if (!self::isAuthenticationPage()) {
-            return;
-        }
-
-        //Enque react & react-dom
-        \SkyfishIntegration\Helper\React::enqueue();
-
-        wp_enqueue_script('skyfish-integration-admin-js', '', [], null, true);
-        wp_localize_script('skyfish-integration-admin-js', 'skyfishAdminData', $this->skyfishAdminDataController());
     }
 
     public static function isAuthenticationPage()

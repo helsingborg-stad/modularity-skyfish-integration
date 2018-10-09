@@ -25,7 +25,37 @@ module.exports = class extends React.Component {
 
     componentDidMount()
     {
-        this.props.api.getFolder(this.fetchPosts, this.state.postsPerPage, 0);
+        const {api} = this.props;
+        const {postsPerPage} = this.state;
+
+        api.getFolder(this.fetchPosts, postsPerPage, 0);
+    }
+
+    fetchPosts(data)
+    {
+        this.setState((state, props) => {
+            const posts = data.response.media.map((media, index) => {
+                return {
+                    id: media.unique_media_id,
+                    type: media.media_type,
+                    mimeType: media.file_mimetype,
+                    fileName: media.filename,
+                    thumbnail: media.thumbnail_url_ssl || media.thumbnail_url,
+                    index: index,
+                    sizes: this.getSizes(media.width, media.height, media.unique_media_id, media.filename),
+                    fileSize: media.file_disksize,
+                    width: media.width,
+                    height: media.height
+                };
+            });
+
+            return {
+                posts: posts,
+                totalPages: Math.ceil(data.response.hits / state.postsPerPage),
+                currentPage: (data.media_offset == 0 ? 1 : (data.media_offset / state.postsPerPage) + 1),
+                hits: data.response.hits
+            };
+        });
     }
 
     getSizes(width, height, id, fileName)
@@ -59,48 +89,22 @@ module.exports = class extends React.Component {
         return sizes;
     }
 
-    fetchPosts(result)
+
+    fetchDetails(data)
     {
-        this.setState((state, props) => {
-            const posts = result.response.media.map((media, index) => {
-                return {
-                    id: media.unique_media_id,
-                    type: media.media_type,
-                    mimeType: media.file_mimetype,
-                    fileName: media.filename,
-                    thumbnail: media.thumbnail_url_ssl || media.thumbnail_url,
-                    index: index,
-                    sizes: this.getSizes(media.width, media.height, media.unique_media_id, media.filename),
-                    fileSize: media.file_disksize,
-                    width: media.width,
-                    height: media.height
-                };
-            });
+        let {currentPost, posts} = this.state;
 
-            return {
-                posts: posts,
-                totalPages: Math.ceil(result.response.hits / state.postsPerPage),
-                currentPage: (result.media_offset == 0 ? 1 : (result.media_offset / state.postsPerPage) + 1),
-                hits: result.response.hits
-            };
-        });
-    }
-
-    fetchDetails(results)
-    {
-        let index = this.state.currentPost;
-
-        if (typeof(this.state.posts[index]) == 'undefined') {
+        if (typeof(posts[currentPost]) == 'undefined') {
             return;
         }
 
         this.setState((state, props) => {
-                let posts = state.posts;
-                posts[index].description = results.metadata.description.en || '';
-                posts[index].publishDate = results.created || '';
-                posts[index].takenDate = results.metadata.iptc.DateCreated || '';
-                posts[index].keywords = results.metadata.iptc.Keywords || '';
-                posts[index].photographer = results.metadata.iptc['By-line'] || '';
+                let {posts, currentPost} = state;
+                posts[currentPost].description = data.metadata.description.en || '';
+                posts[currentPost].publishDate = data.created || '';
+                posts[currentPost].takenDate = data.metadata.iptc.DateCreated || '';
+                posts[currentPost].keywords = data.metadata.iptc.Keywords || '';
+                posts[currentPost].photographer = data.metadata.iptc['By-line'] || '';
             return {posts: posts};
         });
     }
@@ -121,14 +125,14 @@ module.exports = class extends React.Component {
             return_values: ['thumbnail_url_ssl'],
             thumbnail_size: '800px',
             unique_media_id: media.id
-        }, (results) => {
+        }, (data) => {
             //Save preloaded image url & dom object
             this.setState((state, props) => {
                 let posts = state.posts;
                 let img = new Image();
-                img.src = results.response.media[0].thumbnail_url_ssl;
+                img.src = data.response.media[0].thumbnail_url_ssl;
 
-                posts[index].thumbnail_large = results.response.media[0].thumbnail_url_ssl;
+                posts[index].thumbnail_large = data.response.media[0].thumbnail_url_ssl;
                 posts[index]._thumbnail_large = img;
 
                 return {
@@ -150,7 +154,7 @@ module.exports = class extends React.Component {
             });
         }
 
-        this.props.api.requestHook('GET', '/media/' + media.id, {}, (results) => {
+        this.props.api.requestHook('GET', '/media/' + media.id, {}, (data) => {
             //Make sure preload has been initiated
             if (typeof(this.state.posts[media.index]._thumbnail_large) == 'undefined') {
                 return;
@@ -158,14 +162,14 @@ module.exports = class extends React.Component {
 
             //Show details if preload is done
             if (this.state.posts[media.index]._thumbnail_large.complete) {
-                this.fetchDetails(results);
+                this.fetchDetails(data);
                 this.toggleDetails();
                 return;
             }
 
             //Show once preload is done
             this.state.posts[media.index]._thumbnail_large.addEventListener('load', () => {
-                this.fetchDetails(results);
+                this.fetchDetails(data);
                 this.toggleDetails();
             });
         });
@@ -184,22 +188,26 @@ module.exports = class extends React.Component {
         });
     }
 
-    clickDownload(e)
+    quickDownload(e)
     {
         e.preventDefault();
         const media = JSON.parse(e.target.getAttribute('data-media-object'));
-        this.props.api.requestHook('GET', '/media/' + media.unique_media_id + '/download_location', {}, (results) => {forceDownload(results.url)});
+        console.log(media);
+        this.props.api.requestHook('GET', '/media/' + media.id + '/download_location', {}, (data) => {console.log(data); forceDownload(data.url)});
     }
 
     updatePosts(offset)
     {
-        if (this.state.searchString.length != 0) {
-            this.props.api.searchInFolder(this.state.searchString, this.fetchPosts, this.state.postsPerPage, offset);
+        const {searchString, postsPerPage} = this.state;
+        const {api} = this.props;
+        if (typeof(searchString) != 'undefined' && searchString != '') {
+            console.log('in Search!!');
+            api.searchInFolder(searchString, this.fetchPosts, postsPerPage, offset);
 
             return;
         }
 
-        this.props.api.getFolder(this.fetchPosts, this.state.postsPerPage, offset);
+       api.getFolder(this.fetchPosts, postsPerPage, offset);
     }
 
     nextPage()
@@ -239,67 +247,35 @@ module.exports = class extends React.Component {
 
         //Sizes
         if (Object.values(avalibleSizes).includes(size)) {
-            this.props.api.requestHook('GET', '/media/' + id + '/download_location/' + size + 'px', {}, (results) => {forceDownload(results.url)});
+            this.props.api.requestHook('GET', '/media/' + id + '/download_location/' + size + 'px', {}, (data) => {forceDownload(data.url)});
             return;
         }
 
         //Original size
-        this.props.api.requestHook('GET', '/media/' + id + '/download_location', {}, (results) => {forceDownload(results.url)});
+        this.props.api.requestHook('GET', '/media/' + id + '/download_location', {}, (data) => {forceDownload(data.url)});
     }
 
     render(props)
     {
-        const skyfishModuleIndex = {
-            action: {
-                searchInput: (e) => {this.setState({searchString: e.target.value});},
-                clickImage: this.clickImage.bind(this),
-                clickDownload:  this.clickDownload.bind(this),
-                paginationInput: this.paginationInput.bind(this),
-                submitSearch: (e) => {e.preventDefault(); this.updatePosts(0);},
-                clickNext: this.nextPage.bind(this),
-                clickPrev: this.prevPage.bind(this),
-                hoverImage: this.preloadOnMouseDown.bind(this)
-            },
-            data: {
-                postsPerPage: this.state.postsPerPage,
-                totalPages: this.state.totalPages,
-                currentPage: this.state.currentPage,
-                posts: this.state.posts.map((media, index) => {
-                    return {
-                        index: media.index,
-                        type: media.type,
-                        title: media.fileName,
-                        id: media.id,
-                        imageSrc: media.thumbnail
-                    };
-                }),
-                hits: this.state.hits
-            }
-        };
+        const {posts, postsPerPage, currentPage, currentPost, totalPages, showDetails, searchString, hits} = this.state;
 
-        const detailsActions = {
-            goBack: this.toggleDetails.bind(this),
-            downloadImage: this.downloadImage.bind(this)
-        };
-
-        const currentPost = this.state.posts[this.state.currentPost];
         let detailsData =  {};
-        if (typeof(currentPost) != 'undefined') {
+        if (typeof(posts[currentPost]) != 'undefined') {
             detailsData =  {
-                title: currentPost.fileName || '',
-                preview: currentPost.thumbnail_large || '',
-                description: currentPost.description || '',
-                keywords: currentPost.keywords || '',
-                publishDate: currentPost.publishDate || '',
-                sizes: currentPost.sizes || '',
-                id: currentPost.id || '',
+                title: posts[currentPost].fileName || '',
+                preview: posts[currentPost].thumbnail_large || '',
+                description: posts[currentPost].description || '',
+                keywords: posts[currentPost].keywords || '',
+                publishDate: posts[currentPost].publishDate || '',
+                sizes: posts[currentPost].sizes || '',
+                id: posts[currentPost].id || '',
                 meta: {
-                    'Taken': String(currentPost.takenDate).replace('/:/gm', '-') || '',
-                    'Uploaded': currentPost.publishDate || '',
-                    'Resolution': currentPost.width + ' x ' + currentPost.height + ' px' || '',
-                    'Size':  formatBytes(currentPost.fileSize) || '',
-                    'Photographer': currentPost.photographer || '',
-                    'Mime Type': currentPost.mimeType || ''
+                    'Taken': String(posts[currentPost].takenDate).replace('/:/gm', '-') || '',
+                    'Uploaded': posts[currentPost].publishDate || '',
+                    'Resolution': posts[currentPost].width + ' x ' + posts[currentPost].height + ' px' || '',
+                    'Size':  formatBytes(posts[currentPost].fileSize) || '',
+                    'Photographer': posts[currentPost].photographer || '',
+                    'Mime Type': posts[currentPost].mimeType || ''
                 }
             };
         }
@@ -308,13 +284,41 @@ module.exports = class extends React.Component {
             <div className={this.state.showDetails ? 'skyfish-module u-pt-4 show-details' : 'skyfish-module u-pt-4'}>
                 <div className="skyfish-module__index">
                     <SkyfishModuleBrowser
-                        action={skyfishModuleIndex.action}
-                        data={skyfishModuleIndex.data} />
+                        action={{
+                            searchInput: (e) => {this.setState({searchString: e.target.value});},
+                            clickImage: this.clickImage.bind(this),
+                            clickDownload:  this.quickDownload.bind(this),
+                            paginationInput: this.paginationInput.bind(this),
+                            submitSearch: (e) => {e.preventDefault(); this.updatePosts(0);},
+                            clickNext: this.nextPage.bind(this),
+                            clickPrev: this.prevPage.bind(this),
+                            hoverImage: this.preloadOnMouseDown.bind(this)
+                        }}
+                        data={{
+                            postsPerPage: postsPerPage,
+                            totalPages: totalPages,
+                            currentPage: currentPage,
+                            posts: posts.map((media, index) => {
+                                return {
+                                    index: media.index,
+                                    type: media.type,
+                                    title: media.fileName,
+                                    id: media.id,
+                                    imageSrc: media.thumbnail
+                                };
+                            }),
+                            hits: hits,
+                            searchString: searchString
+                        }} />
                 </div>
                 <div className="skyfish-module__details">
                     <SkyfishModuleDetails
-                        action={detailsActions}
-                        data={detailsData} />
+                        action={{
+                            goBack: this.toggleDetails.bind(this),
+                            downloadImage: this.downloadImage.bind(this)
+                        }}
+                        data={detailsData}
+                    />
                 </div>
             </div>
 

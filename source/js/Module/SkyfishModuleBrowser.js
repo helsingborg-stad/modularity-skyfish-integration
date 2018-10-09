@@ -1,7 +1,7 @@
 'use strict';
 
 import SearchForm from './SkyfishModuleSearchForm.js';
-import PaginationComponent from './SkyfishModulePagination.js';
+import Pagination from './SkyfishModulePagination.js';
 import Media from './SkyfishModuleMedia.js';
 
 module.exports = class extends React.Component {
@@ -12,22 +12,14 @@ module.exports = class extends React.Component {
 
     render()
     {
-        const Pagination = (props) => (
-            <PaginationComponent
-                current={this.props.data.currentPage}
-                total={this.props.data.totalPages}
-                next={this.props.action.clickNext}
-                prev={this.props.action.clickPrev}
-                input={this.props.action.paginationInput}
-            />
-        );
+        const {data, action} = this.props;
 
-        const items = this.props.data.posts.map((media, index) => (
+        const items = data.posts.map((media, index) => (
             <Media
                 key={media.id}
-                clickImage={this.props.action.clickImage}
-                clickDownload={this.props.action.clickDownload}
-                hoverImage={this.props.action.hoverImage}
+                clickImage={action.clickImage}
+                clickDownload={action.clickDownload}
+                hoverImage={action.hoverImage}
                 object={media}
                 source={media.imageSrc}
             />
@@ -35,12 +27,14 @@ module.exports = class extends React.Component {
 
         // const SearchBar = this.SearchBar;
         const Breadcrumb = (props) => {
-            const {hits, postsPerPage, currentPage, totalPages} = props;
+            const {hits, postsPerPage, currentPage, totalPages, searchString} = props;
+                let Message = () => (<span>Found {hits} items, displaying page {currentPage} of {totalPages}.</span>);
 
+                // if (searchString != '') {
+                //     Message = () => (<span><b>{hits}</b> hits when searching for "{searchString}", displaying page {currentPage} of {totalPages}.</span>);
+                // }
             return (
-                <span>
-                    Found <b>{hits}</b> items, page {currentPage} of {totalPages}.
-                </span>
+                <Message />
             );
         }
 
@@ -52,25 +46,32 @@ module.exports = class extends React.Component {
                 <div className="grid u-mb-3">
                     <div className="grid-xs-12 grid-md-auto u-mb-2 u-mb-0@md u-mb-0@lg u-mb-0@xl">
                         <SearchForm
-                            searchMethod={this.props.action.searchInput}
-                            submitSearchMethod={this.props.action.submitSearch}
+                            searchMethod={action.searchInput}
+                            submitSearchMethod={action.submitSearch}
                         />
                     </div>
                     <div className="grid-xs-12 grid-md-fit-content">
-                        <Pagination />
+                        <Pagination
+                            current={data.currentPage}
+                            total={data.totalPages}
+                            next={action.clickNext}
+                            prev={action.clickPrev}
+                            input={action.paginationInput}
+                        />
                     </div>
                 </div>
                 <div className="grid u-mb-3">
                     <div className="grid-xs-auto">
                         <Breadcrumb
-                            hits={this.props.data.hits}
-                            postsPerPage={this.props.data.postsPerPage}
-                            currentPage={this.props.data.currentPage}
-                            totalPages={this.props.data.totalPages}
+                            hits={data.hits}
+                            postsPerPage={data.postsPerPage}
+                            currentPage={data.currentPage}
+                            totalPages={data.totalPages}
+                            searchString={data.searchString}
                         />
                     </div>
                     <div className="grid-fit-content">
-                        {/*<SortBy />*/}
+
                     </div>
                 </div>
 
@@ -80,7 +81,13 @@ module.exports = class extends React.Component {
 
                 <div className="grid">
                     <div className="grid-fit-content u-ml-auto">
-                        <Pagination />
+                        <Pagination
+                            current={data.currentPage}
+                            total={data.totalPages}
+                            next={action.clickNext}
+                            prev={action.clickPrev}
+                            input={action.paginationInput}
+                        />
                     </div>
                 </div>
             </div>

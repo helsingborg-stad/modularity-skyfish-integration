@@ -1,8 +1,5 @@
 'use strict';
 
-// const SkyfishApi = require('./Api/SkyfishParser.js');
-// const SkyfishModuleContainer = require('./Module/SkyfishModule.jsx');
-
 import SkyfishApi from './Api/SkyfishParser.js';
 import SkyfishModule from './Module/SkyfishModule.js';
 
