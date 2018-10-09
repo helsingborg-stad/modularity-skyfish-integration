@@ -51,7 +51,7 @@ add_action('plugins_loaded', function () {
 add_action('plugins_loaded', function () {
     if (function_exists('modularity_register_module')) {
         modularity_register_module(
-            SKYFISHINTEGRATION_PATH . 'Source/php/Module/',
+            SKYFISHINTEGRATION_PATH . 'source/php/Module/',
             'Skyfish'
         );
     }
@@ -59,6 +59,6 @@ add_action('plugins_loaded', function () {
 
 // Add module template dir
 add_filter('Modularity/Module/TemplatePath', function ($paths) {
-    $paths[] = SKYFISHINTEGRATION_PATH . 'Source/php/Module/views/';
+    $paths[] = SKYFISHINTEGRATION_PATH . 'source/php/Module/views/';
     return $paths;
 });
