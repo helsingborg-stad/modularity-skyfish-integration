@@ -98,13 +98,28 @@ module.exports = class extends React.Component {
             return;
         }
 
+        //Remove time from publish date
+        if (typeof(data.created) != 'undefined') {
+            let arr = data.created.split(' ');
+            data.created = arr[0] || '';
+        }
+
+        //Format taken date
+        if (data.metadata.iptc != null && typeof(data.metadata.iptc.DateCreated) != 'undefined') {
+            data.metadata.iptc.DateCreated = data.metadata.iptc.DateCreated.replace(/:/g, '-');
+        }
+
         this.setState((state, props) => {
                 let {posts, currentPost} = state;
                 posts[currentPost].description = data.metadata.description.en || '';
                 posts[currentPost].publishDate = data.created || '';
-                posts[currentPost].takenDate = data.metadata.iptc.DateCreated || '';
-                posts[currentPost].keywords = data.metadata.iptc.Keywords || '';
-                posts[currentPost].photographer = data.metadata.iptc['By-line'] || '';
+
+                if (data.metadata.iptc != null) {
+                    posts[currentPost].takenDate = data.metadata.iptc.DateCreated || '';
+                    posts[currentPost].keywords = data.metadata.iptc.Keywords || '';
+                    posts[currentPost].photographer = data.metadata.iptc['By-line'] || '';
+                }
+
             return {posts: posts};
         });
     }
@@ -201,7 +216,6 @@ module.exports = class extends React.Component {
         const {searchString, postsPerPage} = this.state;
         const {api} = this.props;
         if (typeof(searchString) != 'undefined' && searchString != '') {
-            console.log('in Search!!');
             api.searchInFolder(searchString, this.fetchPosts, postsPerPage, offset);
 
             return;
@@ -270,7 +284,7 @@ module.exports = class extends React.Component {
                 sizes: posts[currentPost].sizes || '',
                 id: posts[currentPost].id || '',
                 meta: {
-                    'Taken': String(posts[currentPost].takenDate).replace('/:/gm', '-') || '',
+                    'Taken': posts[currentPost].takenDate || '',
                     'Uploaded': posts[currentPost].publishDate || '',
                     'Resolution': posts[currentPost].width + ' x ' + posts[currentPost].height + ' px' || '',
                     'Size':  formatBytes(posts[currentPost].fileSize) || '',
