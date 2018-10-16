@@ -46,9 +46,16 @@ module.exports = (props) => {
     }
 
     const MetaList = (props) => {
-        const {list} = props;
+        let {list} = props;
 
-        if (typeof(list) == 'undefined' || list.length <= 0) {
+        //Remove empty values
+        Object.entries(list).forEach(([key, value]) => {
+            if (value.length <= 0) {
+                delete list[key];
+            }
+        });
+
+        if (typeof(list) == 'undefined' || Object.values(list).length <= 0) {
             return null;
         }
 
