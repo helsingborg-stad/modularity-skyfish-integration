@@ -54,6 +54,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0"
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/polyfill": "^7.0.0"
   }
 }
