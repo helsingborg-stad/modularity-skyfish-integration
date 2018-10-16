@@ -1,5 +1,5 @@
 'use strict';
-
+import "@babel/polyfill";
 import SkyfishApi from './Api/SkyfishParser.js';
 import SkyfishModule from './Module/SkyfishModule.js';
 

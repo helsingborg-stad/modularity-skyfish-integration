@@ -1,5 +1,5 @@
 'use strict';
-
+import "@babel/polyfill";
 import AuthForm from './Admin/AuthForm.js';
 
 const App = class {
