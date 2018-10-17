@@ -3,16 +3,18 @@
 const $ = jQuery.noConflict();
 
 module.exports = class {
-    constructor(authToken, baseUrl, rootFolder = null)
+    constructor(settings)
     {
+        const {authToken, baseUrl, rootFolder, orderBy, orderDirection, searchMode} = settings;
+
         if (typeof(authToken) == 'undefined' || !authToken) {
             return;
         }
 
         this.authToken = authToken;
         this.baseUrl = baseUrl;
-        this.rootFolder = rootFolder || this.getRootFolderId();
-        this.commonFields = [
+
+        this.commonReturnValues = [
             'filename',
             'width',
             'height',
@@ -27,12 +29,34 @@ module.exports = class {
         ];
 
         this.commonArgs = {
-            return_values: this.commonFields,
-            folder_ids: this.rootFolder,
+            return_values: this.commonReturnValues,
+            folder_ids: rootFolder,
             date_filter_field: 'camera_created',
-            direction: 'desc',
-            order: 'created'
+            direction: orderDirection || 'desc',
+            order: orderBy || 'created'
         };
+
+        //Add query type if defined as anything but default
+        if (typeof(searchMode) != 'undefined' && searchMode != 'default') {
+            this.commonArgs.query_type = searchMode;
+        }
+    }
+
+    requestHook(type, path, data = {}, successCallback)
+    {
+        $.ajax({
+            url : this.baseUrl + path,
+            type : type,
+            headers: {
+                'Authorization' : 'CBX-SIMPLE-TOKEN Token=' + this.authToken
+            },
+            data : data,
+            success : function(response, status) {
+                successCallback(response)
+            },
+            error : function(jqXHR, status, error) {
+            }
+        });
     }
 
     getRootFolderId()
@@ -72,23 +96,6 @@ module.exports = class {
         delete args.q;
 
         this.requestHook('get', '/search', args, successCallback);
-    }
-
-    requestHook(type, path, data = {}, successCallback)
-    {
-        $.ajax({
-            url : this.baseUrl + path,
-            type : type,
-            headers: {
-                'Authorization' : 'CBX-SIMPLE-TOKEN Token=' + this.authToken
-            },
-            data : data,
-            success : function(response, status) {
-                successCallback(response)
-            },
-            error : function(jqXHR, status, error) {
-            }
-        });
     }
 
     request(type, path, data = {})

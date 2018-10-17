@@ -18,12 +18,95 @@
             "choices": {
                 "424682": "Public",
                 "819213": "Videoklipp",
+                "827312": "Public",
                 "845327": "CC BY-bilder",
                 "1296342": "Trash",
                 "1297856": "Api"
             },
             "default_value": [],
             "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5bc723fbe4179",
+            "label": "Order by",
+            "name": "skyfish_order",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "created": "Created",
+                "relevance": "Relevance"
+            },
+            "default_value": [
+                "created"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5bc724eae417a",
+            "label": "Order direction",
+            "name": "skyfish_direction",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "desc": "Descending",
+                "asc": "Ascending"
+            },
+            "default_value": [
+                "desc"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5bc7283ce417c",
+            "label": "Search mode",
+            "name": "skyfish_search_mode",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "strict_and_search": "Strict",
+                "wildcards": "Soft"
+            },
+            "default_value": [
+                "default"
+            ],
+            "allow_null": 1,
             "multiple": 0,
             "ui": 0,
             "return_format": "value",

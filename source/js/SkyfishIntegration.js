@@ -13,24 +13,21 @@ const App = class {
     {
         const domElement = document.getElementById('skyfish-module');
 
-        if (typeof(skyfishData) == 'undefined' || domElement == null) {
+        if (typeof(skyfishAjaxObject) == 'undefined' || domElement == null || typeof(skyfishAjaxObject.apiSettings) == 'undefined') {
             return;
         }
 
-        const api = new SkyfishApi(skyfishData.authToken, skyfishData.baseUrl, skyfishData.rootFolder || null);
+        const api = new SkyfishApi(skyfishAjaxObject.apiSettings);
 
         if (!api.authToken) {
             return;
         }
 
         ReactDOM.render(
-            <SkyfishModule
-                api={api}
-            />,
+            <SkyfishModule api={api} />,
             domElement
         );
     }
-
 };
 
 

@@ -32,26 +32,27 @@ class Skyfish extends \Modularity\Module
         \SkyfishIntegration\Helper\React::enqueue();
 
         wp_enqueue_script('skyfish-integration-js');
-        wp_localize_script('skyfish-integration-js', 'skyfishData', $this->scriptData());
+        wp_localize_script('skyfish-integration-js', 'skyfishAjaxObject', $this->scriptData());
     }
 
     public function scriptData()
     {
         $data = array();
-
         $data['nonce'] = wp_create_nonce('skyfishIntegration');
 
         $api = new \SkyfishIntegration\Api();
         $api->authenticate();
 
-        if ($api->token) {
-            $data['authToken'] = $api->token;
-            $data['baseUrl'] = $api->url;
-        }
+        //Skyfish API Settings
+        $data['apiSettings'] = array(
+            'authToken'     => $api->token,
+            'baseUrl'       => $api->url,
+            'rootFolder'    => (get_field('skyfish_folder', $this->data['ID'])) ? get_field('skyfish_folder', $this->data['ID']) : null,
+            'orderBy'       => (get_field('skyfish_order', $this->data['ID'])) ? get_field('skyfish_order', $this->data['ID']) : 'created',
+            'orderDirection' => (get_field('skyfish_direction', $this->data['ID'])) ? get_field('skyfish_direction', $this->data['ID']) : 'desc',
+            'searchMode'    => (get_field('skyfish_search_mode', $this->data['ID'])) ? get_field('skyfish_search_mode', $this->data['ID']) : 'default'
+        );
 
-        if (get_field('skyfish_folder', $this->data['ID'])) {
-            $data['rootFolder'] = get_field('skyfish_folder',$this->data['ID']);
-        }
 
         //Send to script
         return $data;
