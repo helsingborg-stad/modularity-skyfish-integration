@@ -4,6 +4,8 @@ import SearchForm from './SkyfishModuleSearchForm.js';
 import Pagination from './SkyfishModulePagination.js';
 import Media from './SkyfishModuleMedia.js';
 
+const {translation} = skyfishAjaxObject;
+
 module.exports = class extends React.Component {
     constructor(props)
     {
@@ -28,11 +30,7 @@ module.exports = class extends React.Component {
         // const SearchBar = this.SearchBar;
         const Breadcrumb = (props) => {
             const {hits, postsPerPage, currentPage, totalPages, searchString} = props;
-                let Message = () => (<span>Found {hits} items, displaying page {currentPage} of {totalPages}.</span>);
-
-                // if (searchString != '') {
-                //     Message = () => (<span><b>{hits}</b> hits when searching for "{searchString}", displaying page {currentPage} of {totalPages}.</span>);
-                // }
+                let Message = () => (<span>{translation.foundXItems.replace('%s', hits).replace('%s', currentPage).replace('%s', totalPages)}</span>);
             return (
                 <Message />
             );

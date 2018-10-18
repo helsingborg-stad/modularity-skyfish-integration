@@ -1,3 +1,4 @@
+const {translation} = skyfishAjaxObject;
 module.exports = (props) => {
     return (
         <div className="grid-xs-12 grid-sm-6 grid-lg-3">
@@ -16,7 +17,7 @@ module.exports = (props) => {
                             {props.object.title}
                         </div>
                         <div className="grid-fit-content">
-                            <a onClick={props.clickDownload} href={props.object.download || ''} data-media-object={JSON.stringify(props.object)} className="c-card__link">Download</a>
+                            <a onClick={props.clickDownload} href={props.object.download || ''} data-media-object={JSON.stringify(props.object)} className="c-card__link">{translation.download}</a>
                         </div>
                     </div>
                 </div>

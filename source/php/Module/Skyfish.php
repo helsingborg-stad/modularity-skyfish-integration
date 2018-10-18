@@ -9,8 +9,8 @@ class Skyfish extends \Modularity\Module
 
     public function init()
     {
-        $this->nameSingular = __("Skyfish Gallery", 'modularity-sections');
-        $this->namePlural = __("Skyfish Galleries", 'modularity-sections');
+        $this->nameSingular = __("Skyfish Gallery", 'skyfish-integration');
+        $this->namePlural = __("Skyfish Galleries", 'skyfish-integration');
         $this->description = __("Retrives and output downloadable images from Skyfish.", 'skyfish-integration');
     }
 
@@ -53,6 +53,28 @@ class Skyfish extends \Modularity\Module
             'searchMode'    => (get_field('skyfish_search_mode', $this->data['ID'])) ? get_field('skyfish_search_mode', $this->data['ID']) : 'default'
         );
 
+        //Translation strings
+        $data['translation'] = array(
+            'foundXItems' => __('Found %s items, display page %s of %s.', 'skyfish-integration'),
+            'search' => __('Search', 'skyfish-integration'),
+            'next' => __('Next', 'skyfish-integration'),
+            'previous' => __('Previous', 'skyfish-integration'),
+            'download' => __('Download', 'skyfish-integration'),
+            'uploaded' => __('Uploaded', 'skyfish-integration'),
+            'resolution' => __('Resolution', 'skyfish-integration'),
+            'size' => __('Storlek', 'skyfish-integration'),
+            'mimeType' => __('Mime Type', 'skyfish-integration'),
+            'taken' => __('Taken', 'skyfish-integration'),
+            'photographer' => __('Photographer', 'skyfish-integration'),
+            'storlek' => __('Size', 'skyfish-integration'),
+            'details' => __('Details', 'skyfish-integration'),
+            'keywords' => __('Keywords', 'skyfish-integration'),
+            'goBack' => __('Go back', 'skyfish-integration'),
+            'original' => __('Original', 'skyfish-integration'),
+            'large' => __('Large', 'skyfish-integration'),
+            'medium' => __('Medium', 'skyfish-integration'),
+            'small' => __('Small', 'skyfish-integration')
+        );
 
         //Send to script
         return $data;

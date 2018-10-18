@@ -5,6 +5,8 @@ import SkyfishModuleDetails from './SkyfishModuleMediaDetails.js';
 import {forceDownload, formatBytes} from '../Helper/files.js';
 import {reSize} from '../Helper/ratio.js';
 
+const {translation} = skyfishAjaxObject;
+
 module.exports = class extends React.Component {
     constructor(props)
     {
@@ -61,13 +63,13 @@ module.exports = class extends React.Component {
     getSizes(width, height, id, fileName)
     {
         const avalibleSizes = {
-            large: 1600,
-            medium: 1200,
-            small: 800
+            [translation.large]: 1600,
+            [translation.medium]: 1200,
+            [translation.small]: 800
         };
 
         let sizes = {
-            original: {
+            [translation.original]: {
                 id: id,
                 width: width,
                 height: height,
@@ -284,12 +286,12 @@ module.exports = class extends React.Component {
                 sizes: posts[currentPost].sizes || '',
                 id: posts[currentPost].id || '',
                 meta: {
-                    'Taken': posts[currentPost].takenDate || '',
-                    'Uploaded': posts[currentPost].publishDate || '',
-                    'Resolution': posts[currentPost].width + ' x ' + posts[currentPost].height + ' px' || '',
-                    'Size':  formatBytes(posts[currentPost].fileSize) || '',
-                    'Photographer': posts[currentPost].photographer || '',
-                    'Mime Type': posts[currentPost].mimeType || ''
+                    [translation.taken]: posts[currentPost].takenDate || '',
+                    [translation.uploaded]: posts[currentPost].publishDate || '',
+                    [translation.resolution]: posts[currentPost].width + ' x ' + posts[currentPost].height + ' px' || '',
+                    [translation.size]:  formatBytes(posts[currentPost].fileSize) || '',
+                    [translation.photographer]: posts[currentPost].photographer || '',
+                    [translation.mimeType]: posts[currentPost].mimeType || ''
                 }
             };
         }

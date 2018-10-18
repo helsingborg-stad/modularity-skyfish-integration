@@ -1,0 +1,208 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Skyfish Integration\n"
+"POT-Creation-Date: 2018-10-18 14:04+0200\n"
+"PO-Revision-Date: 2018-10-18 14:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: skyfish-integration.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: acf-fields/php/skyfish-integration.php:6
+msgid "Skyfish Integration - Settings"
+msgstr "Skyfish Integration - Inställningar"
+
+#: acf-fields/php/skyfish-integration.php:10
+msgid "Select folder"
+msgstr "Välj mapp"
+
+#: acf-fields/php/skyfish-integration.php:22
+#: acf-fields/php/skyfish-integration.php:24
+msgid "Public"
+msgstr ""
+
+#: acf-fields/php/skyfish-integration.php:23
+msgid "Videoklipp"
+msgstr ""
+
+#: acf-fields/php/skyfish-integration.php:25
+msgid "CC BY-bilder"
+msgstr ""
+
+#: acf-fields/php/skyfish-integration.php:26
+msgid "Trash"
+msgstr ""
+
+#: acf-fields/php/skyfish-integration.php:27
+msgid "Api"
+msgstr ""
+
+#: acf-fields/php/skyfish-integration.php:40
+msgid "Order by"
+msgstr "Sortera efter"
+
+#: acf-fields/php/skyfish-integration.php:52
+msgid "Created"
+msgstr "Skapad"
+
+#: acf-fields/php/skyfish-integration.php:53
+msgid "Relevance"
+msgstr "Relevans"
+
+#: acf-fields/php/skyfish-integration.php:67
+msgid "Order direction"
+msgstr "Sorteringsriktning"
+
+#: acf-fields/php/skyfish-integration.php:79
+msgid "Descending"
+msgstr "Fallande"
+
+#: acf-fields/php/skyfish-integration.php:80
+msgid "Ascending"
+msgstr "Stigande"
+
+#: acf-fields/php/skyfish-integration.php:94
+msgid "Search mode"
+msgstr "Sökläge"
+
+#: acf-fields/php/skyfish-integration.php:106
+msgid "Default"
+msgstr "Standard"
+
+#: acf-fields/php/skyfish-integration.php:107
+msgid "Strict"
+msgstr "Strikt"
+
+#: acf-fields/php/skyfish-integration.php:108
+msgid "Soft"
+msgstr "Mjuk"
+
+#: source/php/Module/Skyfish.php:12
+msgid "Skyfish Gallery"
+msgstr "Skyfish Galleri"
+
+#: source/php/Module/Skyfish.php:13
+msgid "Skyfish Galleries"
+msgstr "Skyfish Gallerier"
+
+#: source/php/Module/Skyfish.php:14
+msgid "Retrives and output downloadable images from Skyfish."
+msgstr ""
+
+#: source/php/Module/Skyfish.php:58
+#, php-format
+msgid "Found %s items, display page %s of %s."
+msgstr "Hittade %s objekt, visar sida %s av %s."
+
+#: source/php/Module/Skyfish.php:59
+msgid "Search"
+msgstr "Sök"
+
+#: source/php/Module/Skyfish.php:60
+msgid "Next"
+msgstr "Nästa"
+
+#: source/php/Module/Skyfish.php:61
+msgid "Previous"
+msgstr "Föregående"
+
+#: source/php/Module/Skyfish.php:62
+msgid "Download"
+msgstr "Ladda ner"
+
+#: source/php/Module/Skyfish.php:63
+msgid "Uploaded"
+msgstr "Uppladdad"
+
+#: source/php/Module/Skyfish.php:64
+msgid "Resolution"
+msgstr "Upplösning"
+
+#: source/php/Module/Skyfish.php:65
+msgid "Storlek"
+msgstr "Storlek"
+
+#: source/php/Module/Skyfish.php:66
+msgid "Mime Type"
+msgstr "Mime-typ"
+
+#: source/php/Module/Skyfish.php:67
+msgid "Taken"
+msgstr "Tagen"
+
+#: source/php/Module/Skyfish.php:68
+msgid "Photographer"
+msgstr "Fotograf"
+
+#: source/php/Module/Skyfish.php:69
+msgid "Size"
+msgstr "Storlek"
+
+#: source/php/Module/Skyfish.php:70
+msgid "Details"
+msgstr "Detaljer"
+
+#: source/php/Module/Skyfish.php:71
+msgid "Keywords"
+msgstr "Nyckelord"
+
+#: source/php/Module/Skyfish.php:72
+msgid "Go back"
+msgstr "Gå tillbaka"
+
+#: source/php/Module/Skyfish.php:73
+msgid "Original"
+msgstr "Original"
+
+#: source/php/Module/Skyfish.php:74
+msgid "Large"
+msgstr "Stor"
+
+#: source/php/Module/Skyfish.php:75
+msgid "Medium"
+msgstr "Mellan"
+
+#: source/php/Module/Skyfish.php:76
+msgid "Small"
+msgstr "Liten"
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:364
+msgid "Export with AcfExportManager"
+msgstr ""
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:408
+#, php-format
+msgid "Exported %d fieldgroup(s)."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Skyfish Integration"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/helsingborg-stad/skyfish-integration"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Skyfish integration for Wordpress"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Nikolas Ramstedt (nikolas.ramstedt@helsingborg.se)"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/helsingborg-stad"
+msgstr ""

@@ -1,5 +1,6 @@
 import {Dropdown, Button} from 'hbg-react';
 import {capitalizeFirstLetter} from '../Helper/text.js';
+const {translation} = skyfishAjaxObject;
 
 module.exports = (props) => {
     const Keywords = (props) => {
@@ -13,7 +14,7 @@ module.exports = (props) => {
 
         return (
             <div className="u-mt-3">
-                <h4>Keywords</h4>
+                <h4>{translation.keywords}</h4>
                 <p>{keywords}</p>
             </div>
         );
@@ -38,7 +39,7 @@ module.exports = (props) => {
             <div className="u-mt-3">
             <Dropdown
                 toggleClass="btn btn-primary btn-block"
-                title="Download"
+                title={translation.download}
                 list={sizes}
             />
             </div>
@@ -61,7 +62,7 @@ module.exports = (props) => {
 
         return (
             <div className="u-mt-3">
-                <h4>Details</h4>
+                <h4>{translation.details}</h4>
                 <table>
                     <tbody>
                         {Object.entries(list).map(([key, value]) => {
@@ -85,7 +86,7 @@ module.exports = (props) => {
                     <div className="skyfish-module__goback">
                         <Button color="palette-2" onClick={props.action.goBack || null}>
                             <i className="pricon pricon-back"></i>
-                            Go back
+                            {translation.goBack}
                         </Button>
                     </div>
                 </div>

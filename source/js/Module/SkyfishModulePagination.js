@@ -1,5 +1,5 @@
 import {Button} from 'hbg-react';
-
+const {translation} = skyfishAjaxObject;
 module.exports = (props) => (
     <div>
         <div className="grid grid-va-middle">
@@ -12,12 +12,12 @@ module.exports = (props) => (
 
             <div className="grid-fit-content">
                 <Button color="primary" onClick={props.prev} disabled={props.current == 1 ? true : false}>
-                    <i className="pricon pricon-previous u-hidden@md u-hidden@lg u-hidden@xl"></i> <span className="u-hidden@xs u-hidden@sm">Previous</span>
+                    <i className="pricon pricon-previous u-hidden@md u-hidden@lg u-hidden@xl"></i> <span className="u-hidden@xs u-hidden@sm">{translation.previous}</span>
                 </Button>
             </div>
             <div className="grid-fit-content">
                 <Button  color="primary" onClick={props.next} disabled={props.current == props.total ? true : false}>
-                    <span className="u-hidden@xs u-hidden@sm">Next</span> <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl"></i>
+                    <span className="u-hidden@xs u-hidden@sm">{translation.next}</span> <i className="pricon pricon-next u-hidden@md u-hidden@lg u-hidden@xl"></i>
                 </Button>
             </div>
         </div>
