@@ -95,6 +95,10 @@
     .link:hover {
         cursor: pointer;
     }
+
+    button.pricon:before {
+        margin-right: 8px;
+    }
 }
 
 
