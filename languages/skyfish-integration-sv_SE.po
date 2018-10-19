@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Skyfish Integration\n"
-"POT-Creation-Date: 2018-10-18 14:04+0200\n"
-"PO-Revision-Date: 2018-10-18 14:10+0200\n"
+"POT-Creation-Date: 2018-10-19 13:43+0200\n"
+"PO-Revision-Date: 2018-10-19 13:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -53,39 +53,43 @@ msgstr ""
 msgid "Order by"
 msgstr "Sortera efter"
 
-#: acf-fields/php/skyfish-integration.php:52
-msgid "Created"
-msgstr "Skapad"
+#: acf-fields/php/skyfish-integration.php:52 source/php/Module/Skyfish.php:78
+msgid "Publish date"
+msgstr "Publiceringsdatum"
 
-#: acf-fields/php/skyfish-integration.php:53
+#: acf-fields/php/skyfish-integration.php:53 source/php/Module/Skyfish.php:79
+msgid "Camera date"
+msgstr "Kameradatum"
+
+#: acf-fields/php/skyfish-integration.php:54 source/php/Module/Skyfish.php:80
 msgid "Relevance"
 msgstr "Relevans"
 
-#: acf-fields/php/skyfish-integration.php:67
+#: acf-fields/php/skyfish-integration.php:68
 msgid "Order direction"
 msgstr "Sorteringsriktning"
 
-#: acf-fields/php/skyfish-integration.php:79
+#: acf-fields/php/skyfish-integration.php:80 source/php/Module/Skyfish.php:81
 msgid "Descending"
 msgstr "Fallande"
 
-#: acf-fields/php/skyfish-integration.php:80
+#: acf-fields/php/skyfish-integration.php:81 source/php/Module/Skyfish.php:82
 msgid "Ascending"
 msgstr "Stigande"
 
-#: acf-fields/php/skyfish-integration.php:94
+#: acf-fields/php/skyfish-integration.php:95
 msgid "Search mode"
 msgstr "Sökläge"
 
-#: acf-fields/php/skyfish-integration.php:106
+#: acf-fields/php/skyfish-integration.php:107
 msgid "Default"
 msgstr "Standard"
 
-#: acf-fields/php/skyfish-integration.php:107
+#: acf-fields/php/skyfish-integration.php:108
 msgid "Strict"
 msgstr "Strikt"
 
-#: acf-fields/php/skyfish-integration.php:108
+#: acf-fields/php/skyfish-integration.php:109
 msgid "Soft"
 msgstr "Mjuk"
 
@@ -107,74 +111,79 @@ msgid "Found %s items, display page %s of %s."
 msgstr "Hittade %s objekt, visar sida %s av %s."
 
 #: source/php/Module/Skyfish.php:59
+#, php-format
+msgid "%s results, display page %s of %s."
+msgstr "%s resultat, visar sida %s av %s."
+
+#: source/php/Module/Skyfish.php:60
 msgid "Search"
 msgstr "Sök"
 
-#: source/php/Module/Skyfish.php:60
+#: source/php/Module/Skyfish.php:61
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/Skyfish.php:61
+#: source/php/Module/Skyfish.php:62
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/Skyfish.php:62
+#: source/php/Module/Skyfish.php:63
 msgid "Download"
 msgstr "Ladda ner"
 
-#: source/php/Module/Skyfish.php:63
+#: source/php/Module/Skyfish.php:64
 msgid "Uploaded"
 msgstr "Uppladdad"
 
-#: source/php/Module/Skyfish.php:64
+#: source/php/Module/Skyfish.php:65
 msgid "Resolution"
 msgstr "Upplösning"
 
-#: source/php/Module/Skyfish.php:65
+#: source/php/Module/Skyfish.php:66
 msgid "Storlek"
 msgstr "Storlek"
 
-#: source/php/Module/Skyfish.php:66
+#: source/php/Module/Skyfish.php:67
 msgid "Mime Type"
 msgstr "Mime-typ"
 
-#: source/php/Module/Skyfish.php:67
+#: source/php/Module/Skyfish.php:68
 msgid "Taken"
 msgstr "Tagen"
 
-#: source/php/Module/Skyfish.php:68
+#: source/php/Module/Skyfish.php:69
 msgid "Photographer"
 msgstr "Fotograf"
 
-#: source/php/Module/Skyfish.php:69
+#: source/php/Module/Skyfish.php:70
 msgid "Size"
 msgstr "Storlek"
 
-#: source/php/Module/Skyfish.php:70
+#: source/php/Module/Skyfish.php:71
 msgid "Details"
 msgstr "Detaljer"
 
-#: source/php/Module/Skyfish.php:71
+#: source/php/Module/Skyfish.php:72
 msgid "Keywords"
 msgstr "Nyckelord"
 
-#: source/php/Module/Skyfish.php:72
+#: source/php/Module/Skyfish.php:73
 msgid "Go back"
 msgstr "Gå tillbaka"
 
-#: source/php/Module/Skyfish.php:73
+#: source/php/Module/Skyfish.php:74
 msgid "Original"
 msgstr "Original"
 
-#: source/php/Module/Skyfish.php:74
+#: source/php/Module/Skyfish.php:75
 msgid "Large"
 msgstr "Stor"
 
-#: source/php/Module/Skyfish.php:75
+#: source/php/Module/Skyfish.php:76
 msgid "Medium"
 msgstr "Mellan"
 
-#: source/php/Module/Skyfish.php:76
+#: source/php/Module/Skyfish.php:77
 msgid "Small"
 msgstr "Liten"
 
@@ -206,3 +215,12 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://github.com/helsingborg-stad"
 msgstr ""
+
+#~ msgid "Publish Date"
+#~ msgstr "Publiceringsdatum"
+
+#~ msgid "Camera Date"
+#~ msgstr "Kameradatum"
+
+#~ msgid "Created"
+#~ msgstr "Skapad"

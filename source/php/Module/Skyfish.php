@@ -56,6 +56,7 @@ class Skyfish extends \Modularity\Module
         //Translation strings
         $data['translation'] = array(
             'foundXItems' => __('Found %s items, display page %s of %s.', 'skyfish-integration'),
+            'xResults' => __('%s results, display page %s of %s.', 'skyfish-integration'),
             'search' => __('Search', 'skyfish-integration'),
             'next' => __('Next', 'skyfish-integration'),
             'previous' => __('Previous', 'skyfish-integration'),
@@ -73,7 +74,12 @@ class Skyfish extends \Modularity\Module
             'original' => __('Original', 'skyfish-integration'),
             'large' => __('Large', 'skyfish-integration'),
             'medium' => __('Medium', 'skyfish-integration'),
-            'small' => __('Small', 'skyfish-integration')
+            'small' => __('Small', 'skyfish-integration'),
+            'publishDate' => __('Publish date', 'skyfish-integration'),
+            'cameraDate' => __('Camera date', 'skyfish-integration'),
+            'relevance' => __('Relevance', 'skyfish-integration'),
+            'descending' => __('Descending', 'skyfish-integration'),
+            'ascending' => __('Ascending', 'skyfish-integration')
         );
 
         //Send to script
