@@ -45,7 +45,8 @@
                 "id": ""
             },
             "choices": {
-                "created": "Created",
+                "created": "Publish date",
+                "camera_created": "Camera date",
                 "relevance": "Relevance"
             },
             "default_value": [

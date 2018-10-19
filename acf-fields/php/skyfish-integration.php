@@ -49,7 +49,8 @@
                 'id' => '',
             ),
             'choices' => array(
-                'created' => __('Created', 'skyfish-integration'),
+                'created' => __('Publish date', 'skyfish-integration'),
+                'camera_created' => __('Camera date', 'skyfish-integration'),
                 'relevance' => __('Relevance', 'skyfish-integration'),
             ),
             'default_value' => array(
