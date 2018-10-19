@@ -19,7 +19,9 @@ module.exports = class extends React.Component {
             totalPages: 0,
             showDetails: false,
             searchString: '',
-            hits: 0
+            hits: 0,
+            direction: props.api.commonArgs.direction,
+            order: props.api.commonArgs.order,
         }
 
         this.fetchPosts = this.fetchPosts.bind(this);
@@ -90,7 +92,6 @@ module.exports = class extends React.Component {
 
         return sizes;
     }
-
 
     fetchDetails(data)
     {
@@ -210,7 +211,7 @@ module.exports = class extends React.Component {
         e.preventDefault();
         const media = JSON.parse(e.target.getAttribute('data-media-object'));
         console.log(media);
-        this.props.api.requestHook('GET', '/media/' + media.id + '/download_location', {}, (data) => {console.log(data); forceDownload(data.url)});
+        this.props.api.requestHook('GET', '/media/' + media.id + '/download_location', {}, (data) => {forceDownload(data.url)});
     }
 
     updatePosts(offset)
@@ -271,9 +272,29 @@ module.exports = class extends React.Component {
         this.props.api.requestHook('GET', '/media/' + id + '/download_location', {}, (data) => {forceDownload(data.url)});
     }
 
+    changeOrder(order)
+    {
+        const {api} = this.props;
+        if (api.commonArgs.order == order) {
+            return;
+        }
+
+        api.commonArgs.order = order;
+        this.setState({order: api.commonArgs.order});
+        this.updatePosts(0);
+    }
+
+    changeDirection()
+    {
+        let {api} = this.props;
+        api.commonArgs.direction = (api.commonArgs.direction == 'desc' ? 'asc' : 'desc');
+        this.setState({direction: api.commonArgs.direction});
+        this.updatePosts(0);
+    }
+
     render(props)
     {
-        const {posts, postsPerPage, currentPage, currentPost, totalPages, showDetails, searchString, hits} = this.state;
+        const {direction, posts, postsPerPage, currentPage, currentPost, totalPages, showDetails, searchString, hits, order} = this.state;
 
         let detailsData =  {};
         if (typeof(posts[currentPost]) != 'undefined') {
@@ -308,7 +329,9 @@ module.exports = class extends React.Component {
                             submitSearch: (e) => {e.preventDefault(); this.updatePosts(0);},
                             clickNext: this.nextPage.bind(this),
                             clickPrev: this.prevPage.bind(this),
-                            hoverImage: this.preloadOnMouseDown.bind(this)
+                            hoverImage: this.preloadOnMouseDown.bind(this),
+                            changeOrder: this.changeOrder.bind(this),
+                            changeDirection: this.changeDirection.bind(this)
                         }}
                         data={{
                             postsPerPage: postsPerPage,
@@ -324,8 +347,11 @@ module.exports = class extends React.Component {
                                 };
                             }),
                             hits: hits,
-                            searchString: searchString
+                            searchString: searchString,
+                            order: order,
+                            direction: direction
                         }} />
+
                 </div>
                 <div className="skyfish-module__details">
                     <SkyfishModuleDetails

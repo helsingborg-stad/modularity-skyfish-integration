@@ -1,7 +1,7 @@
 const {translation} = skyfishAjaxObject;
 module.exports = (props) => {
     return (
-        <div className="grid-xs-12 grid-sm-6 grid-lg-3">
+        <div className="grid-xs-12 grid-sm-6 grid-md-4 grid-lg-3">
             <div className="c-card c-card--skyfish c-card--action">
                 <div className="ratio-4-3 overflow-hidden">
                     <img
