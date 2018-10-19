@@ -1,7 +1,7 @@
 'use strict';
 
 import SkyfishModuleBrowser from './SkyfishModuleBrowser.js';
-import SkyfishModuleDetails from './SkyfishModuleMediaDetails.js';
+import SkyfishModuleDetails from './SkyfishModuleDetails.js';
 import {forceDownload, formatBytes} from '../Helper/files.js';
 import {reSize} from '../Helper/ratio.js';
 
