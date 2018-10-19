@@ -307,8 +307,8 @@ module.exports = class extends React.Component {
                 sizes: posts[currentPost].sizes || '',
                 id: posts[currentPost].id || '',
                 meta: {
-                    [translation.taken]: posts[currentPost].takenDate || '',
-                    [translation.uploaded]: posts[currentPost].publishDate || '',
+                    [translation.cameraDate]: posts[currentPost].takenDate || '',
+                    [translation.publishDate]: posts[currentPost].publishDate || '',
                     [translation.resolution]: posts[currentPost].width + ' x ' + posts[currentPost].height + ' px' || '',
                     [translation.size]:  formatBytes(posts[currentPost].fileSize) || '',
                     [translation.photographer]: posts[currentPost].photographer || '',
