@@ -31,7 +31,6 @@ module.exports = class {
         this.commonArgs = {
             return_values: this.commonReturnValues,
             folder_ids: rootFolder,
-            date_filter_field: 'camera_created',
             direction: orderDirection || 'desc',
             order: orderBy || 'created'
         };
