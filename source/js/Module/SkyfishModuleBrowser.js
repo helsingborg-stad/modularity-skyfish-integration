@@ -116,6 +116,7 @@ module.exports = class extends React.Component {
                     <div className="grid-xs-12 grid-sm-fit-content u-mb-3">
                         <div className="grid sm-gutter">
                             <div className="grid-fit-content">
+                                {/* OrderController component breaks with react 16.6.0 */}
                                 <OrderController
                                     onClickAction={action.changeOrder}
                                     currentOrder={data.order}

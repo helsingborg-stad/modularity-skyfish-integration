@@ -98,6 +98,7 @@ module.exports = (props) => {
                         <h2>{props.data.title || ''}</h2>
                         <p>{props.data.description || ''}</p>
                         <Keywords words={props.data.keywords || []} />
+                        {/* Downloads component breaks with react 16.6.0 */}
                         <Downloads sizes={props.data.sizes || []} onClickItem={props.action.downloadImage} />
                         <MetaList list={props.data.meta || {}} />
                     </article>
