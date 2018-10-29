@@ -4,6 +4,7 @@ import SkyfishModuleBrowser from './SkyfishModuleBrowser.js';
 import SkyfishModuleDetails from './SkyfishModuleDetails.js';
 import {forceDownload, formatBytes} from '../Helper/files.js';
 import {reSize} from '../Helper/ratio.js';
+import queryString from 'query-string';
 
 const {translation} = skyfishAjaxObject;
 
@@ -25,15 +26,65 @@ module.exports = class extends React.Component {
         }
 
         this.fetchPosts = this.fetchPosts.bind(this);
+
     }
+
+
 
     componentDidMount()
     {
         const {api} = this.props;
         const {postsPerPage} = this.state;
+        const url = new URL(window.location).pathname.split('/');
+        let mediaId = false;
 
-        api.getFolder(this.fetchPosts, postsPerPage, 0);
+        if (url.indexOf('skyfishId') != -1) {
+            mediaId = this.getMediaID();
+        }
+
+        if (mediaId) {
+            api.getFolder(this.fetchPosts, postsPerPage, 0, mediaId);
+            this.getDetailsOnLoad(mediaId);
+        } else {
+            api.getFolder(this.fetchPosts, postsPerPage, 0);
+        }
+
     }
+
+
+    buildNewQuery(id = false)
+    {
+        const queryStr = queryString.parse(location.search);
+        const mediaId = (queryStr.mediaId) ? queryStr.mediaId : false;
+        let uri = window.location.toString();
+        let buildQyery = '';
+        let amp = '';
+
+
+        if (uri.indexOf("?") > 0) {
+            const clean_uri = uri.substring(0, uri.indexOf("?"));
+            window.history.replaceState({}, document.title, clean_uri);
+            buildQyery = '?';
+            amp = '&';
+        }
+
+        const url = new URL(window.location).pathname.split('/');
+        if (Object.keys(queryStr).length > 0 || id || url.indexOf('skyfishId') != 1) {
+
+            for (var key in queryStr) {
+                buildQyery += (queryStr[key] != mediaId) ? key + '=' + queryStr[key] + amp : '';
+            }
+
+            if (url.indexOf('skyfishId') != 1) {
+                buildQyery += (id != false) ? uri+'/skyfishId/' + id + '/' : '';
+            }
+
+            buildQyery = (buildQyery.substring(buildQyery.length-1) == "&") ? buildQyery.substring(0, buildQyery.length-1) : buildQyery;
+            window.history.replaceState({}, document.title, buildQyery);
+        }
+    }
+
+
 
     fetchPosts(data)
     {
@@ -62,36 +113,21 @@ module.exports = class extends React.Component {
         });
     }
 
-    getSizes(width, height, id, fileName)
+    getMediaID()
     {
-        const avalibleSizes = {
-            [translation.large]: 1600,
-            [translation.medium]: 1200,
-            [translation.small]: 800
-        };
+        let url = new URL(window.location).pathname.split('/');
 
-        let sizes = {
-            [translation.original]: {
-                id: id,
-                width: width,
-                height: height,
-                format: fileName.split('.').pop() || ''
-            }
+        if (url.indexOf('skyfishId') != -1) {
+            var newUrl = {};
+            Object.keys(url).forEach(function(key){
+                if (typeof url[key] != 'undefined' && url[key] != null && url[key] != ''){
+                    newUrl[key] = url[key];
+                }
+            });
+            return Object.values(newUrl)[Object.values(newUrl).length - 1];
         }
-
-        Object.entries(avalibleSizes).forEach(([sizeName, size]) => {
-            let reSized = reSize(width, height, size);
-
-            sizes[sizeName] = {
-                id: id,
-                width: reSized.width,
-                height: reSized.height,
-                format: 'jpeg'
-            };
-        });
-
-        return sizes;
     }
+
 
     fetchDetails(data)
     {
@@ -127,11 +163,48 @@ module.exports = class extends React.Component {
         });
     }
 
+    getDetailsOnLoad(mediaId){
+
+        if (this.state.currentPost != 0) {
+            this.setState({
+                currentPost: 0
+            });
+        }
+
+        this.props.api.requestHook('GET', '/media/' + mediaId, {}, (data) => {
+
+            this.props.api.requestHook('GET', '/search', {
+                folder_ids: this.props.api.rootFolder,
+                return_values: ['thumbnail_url_ssl'],
+                thumbnail_size: '800px',
+                unique_media_id: mediaId
+            }, (data) => {
+
+                this.setState((state, props) => {
+                    let posts = state.posts;
+                    let img = new Image();
+                    img.src = data.response.media[0].thumbnail_url_ssl;
+                    posts[0].thumbnail_large = data.response.media[0].thumbnail_url_ssl;
+                    posts[0]._thumbnail_large = img;
+                    return {
+                        posts: posts
+                    };
+                });
+            });
+
+            document.querySelector('.skyfish-module__goback').classList.add('hidden');
+
+            this.fetchDetails(data);
+            this.toggleDetails();
+            return;
+        });
+    }
+
     preloadOnMouseDown(e)
     {
+
         const media = JSON.parse(e.target.getAttribute('data-media-object'));
         const index = parseInt(media.index);
-
         //Bail if post index does not exists or if image already has been preloaded
         if (typeof(this.state.posts[index]) == 'undefined' || typeof(this.state.posts[index].thumbnail_large) != 'undefined') {
             return;
@@ -200,6 +273,21 @@ module.exports = class extends React.Component {
         };
 
         this.setState((state, props) => {
+
+            if (state.showDetails === false) {
+                const url = new URL(window.location).pathname.split('/');
+                let mediaId = (url.indexOf('skyfishId') != 1) ? this.getMediaID() : '';
+                if (!mediaId)
+                    this.buildNewQuery(state.posts[state.currentPost].id);
+            }
+            else {
+                let path = window.location.pathname.split('/');
+                let mediaId =  path.pop() || path.pop();
+                let newPath = window.location.pathname.replace('/'+mediaId+'/', '');
+                window.history.pushState({}, document.title, newPath.replace('/skyfishId',''));
+                this.buildNewQuery();
+            }
+
             return {
                 showDetails: (!state.showDetails ? true : false),
             }
@@ -226,6 +314,39 @@ module.exports = class extends React.Component {
 
        api.getFolder(this.fetchPosts, postsPerPage, offset);
     }
+
+
+    getSizes(width, height, id, fileName)
+    {
+        const avalibleSizes = {
+            [translation.large]: 1600,
+            [translation.medium]: 1200,
+            [translation.small]: 800
+        };
+
+        let sizes = {
+            [translation.original]: {
+                id: id,
+                width: width,
+                height: height,
+                format: fileName.split('.').pop() || ''
+            }
+        }
+
+        Object.entries(avalibleSizes).forEach(([sizeName, size]) => {
+            let reSized = reSize(width, height, size);
+
+            sizes[sizeName] = {
+                id: id,
+                width: reSized.width,
+                height: reSized.height,
+                format: 'jpeg'
+            };
+        });
+
+        return sizes;
+    }
+
 
     nextPage()
     {
@@ -353,7 +474,7 @@ module.exports = class extends React.Component {
                         }} />
 
                 </div>
-                <div className="skyfish-module__details">
+                <div className="skyfish-module__details" >
                     <SkyfishModuleDetails
                         action={{
                             goBack: this.toggleDetails.bind(this),

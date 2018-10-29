@@ -124,11 +124,11 @@ gulp.task('scripts', function() {
             .pipe(source(entry)) // Converts To Vinyl Stream
             .pipe(buffer()) // Converts Vinyl Stream To Vinyl Buffer
             // Gulp Plugins Here!
-            .pipe(sourcemaps.init())
-            .pipe(sourcemaps.write())
+            //.pipe(sourcemaps.init())
+            //.pipe(sourcemaps.write())
             .pipe(gulp.dest('dist/js'))
-            .pipe(uglify())
-            .pipe(gulp.dest('dist/.tmp/js'));
+            //.pipe(uglify())
+            //.pipe(gulp.dest('dist/.tmp/js'));
     });
 
     return es.merge.apply(null, tasks);

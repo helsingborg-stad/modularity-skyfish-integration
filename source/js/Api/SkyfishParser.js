@@ -87,14 +87,17 @@ module.exports = class {
         this.requestHook('get', '/search', args, successCallback);
     }
 
-    getFolder(successCallback, mediaCount, mediaOffset)
+    getFolder(successCallback, mediaCount, mediaOffset, mediaId=false)
     {
         var args = this.commonArgs;
         args.media_count = mediaCount;
         args.media_offset = mediaOffset;
         delete args.q;
-
+        if (mediaId) {
+            args.unique_media_id = mediaId;
+        }
         this.requestHook('get', '/search', args, successCallback);
+
     }
 
     request(type, path, data = {})
