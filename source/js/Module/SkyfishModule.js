@@ -126,7 +126,7 @@ module.exports = class extends React.Component {
 
     fetchDetails(data)
     {
-        console.log(data);
+
         let {currentPost, posts} = this.state;
 
         if (typeof(posts[currentPost]) == 'undefined') {
@@ -274,14 +274,14 @@ module.exports = class extends React.Component {
 
             if (state.showDetails === false) {
                 const url = new URL(window.location).pathname.split('/');
-                let mediaId = (url.indexOf('skyfishId') != 1) ? this.getMediaID() : '';
+                const mediaId = (url.indexOf('skyfishId') != 1) ? this.getMediaID() : '';
                 if (!mediaId)
                     this.buildNewQuery(state.posts[state.currentPost].id);
             }
             else {
-                let path = window.location.pathname.split('/');
-                let mediaId =  path.pop() || path.pop();
-                let newPath = window.location.pathname.replace('/'+mediaId+'/', '');
+                const path = window.location.pathname.split('/');
+                const mediaId =  path.pop() || path.pop();
+                const newPath = window.location.pathname.replace('/'+mediaId+'/', '');
                 window.history.pushState({}, document.title, newPath.replace('/skyfishId',''));
                 this.buildNewQuery();
             }
@@ -296,7 +296,6 @@ module.exports = class extends React.Component {
     {
         e.preventDefault();
         const media = JSON.parse(e.target.getAttribute('data-media-object'));
-        console.log(media);
         this.props.api.requestHook('GET', '/media/' + media.id + '/download_location', {}, (data) => {forceDownload(data.url)});
     }
 
