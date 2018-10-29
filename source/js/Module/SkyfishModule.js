@@ -36,11 +36,7 @@ module.exports = class extends React.Component {
         const {api} = this.props;
         const {postsPerPage} = this.state;
         const url = new URL(window.location).pathname.split('/');
-        let mediaId = false;
-
-        if (url.indexOf('skyfishId') != -1) {
-            mediaId = this.getMediaID();
-        }
+        const mediaId = (url.indexOf('skyfishId') != -1) ? this.getMediaID() : false;
 
         if (mediaId) {
             api.getFolder(this.fetchPosts, postsPerPage, 0, mediaId);
@@ -59,7 +55,6 @@ module.exports = class extends React.Component {
         let uri = window.location.toString();
         let buildQyery = '';
         let amp = '';
-
 
         if (uri.indexOf("?") > 0) {
             const clean_uri = uri.substring(0, uri.indexOf("?"));
@@ -226,7 +221,6 @@ module.exports = class extends React.Component {
                 let posts = state.posts;
                 let img = new Image();
                 img.src = data.response.media[0].thumbnail_url_ssl;
-
                 posts[index].thumbnail_large = data.response.media[0].thumbnail_url_ssl;
                 posts[index]._thumbnail_large = img;
 
