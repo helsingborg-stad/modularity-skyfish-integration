@@ -131,6 +131,7 @@ module.exports = class extends React.Component {
 
     fetchDetails(data)
     {
+        console.log(data);
         let {currentPost, posts} = this.state;
 
         if (typeof(posts[currentPost]) == 'undefined') {
@@ -153,9 +154,12 @@ module.exports = class extends React.Component {
                 posts[currentPost].description = data.metadata.description.en || '';
                 posts[currentPost].publishDate = data.created || '';
 
+                if (data.metadata.keywords != null) {
+                    posts[currentPost].keywords = data.metadata.keywords.en || [];
+                }
+
                 if (data.metadata.iptc != null) {
                     posts[currentPost].takenDate = data.metadata.iptc.DateCreated || '';
-                    posts[currentPost].keywords = data.metadata.iptc.Keywords || '';
                     posts[currentPost].photographer = data.metadata.iptc['By-line'] || '';
                 }
 
