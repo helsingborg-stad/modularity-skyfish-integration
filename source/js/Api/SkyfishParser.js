@@ -3,8 +3,7 @@
 const $ = jQuery.noConflict();
 
 module.exports = class {
-    constructor(settings)
-    {
+    constructor(settings) {
         const {authToken, baseUrl, rootFolder, orderBy, orderDirection, searchMode} = settings;
 
         if (typeof(authToken) == 'undefined' || !authToken) {
@@ -41,25 +40,23 @@ module.exports = class {
         }
     }
 
-    requestHook(type, path, data = {}, successCallback)
-    {
+    requestHook(type, path, data = {}, successCallback) {
         $.ajax({
-            url : this.baseUrl + path,
-            type : type,
+            url: this.baseUrl + path,
+            type: type,
             headers: {
-                'Authorization' : 'CBX-SIMPLE-TOKEN Token=' + this.authToken
+                'Authorization': 'CBX-SIMPLE-TOKEN Token=' + this.authToken
             },
-            data : data,
-            success : function(response, status) {
+            data: data,
+            success: function (response, status) {
                 successCallback(response)
             },
-            error : function(jqXHR, status, error) {
+            error: function (jqXHR, status, error) {
             }
         });
     }
 
-    getRootFolderId()
-    {
+    getRootFolderId() {
         var root = '';
 
         this.listFolders().forEach(folder => {
@@ -73,13 +70,11 @@ module.exports = class {
         return root;
     }
 
-    listFolders()
-    {
+    listFolders() {
         return this.request('get', '/folder', {});
     }
 
-    searchInFolder(searchString, successCallback, mediaCount, mediaOffset)
-    {
+    searchInFolder(searchString, successCallback, mediaCount, mediaOffset) {
         let args = this.commonArgs;
         args.media_count = mediaCount;
         args.media_offset = mediaOffset;
@@ -87,8 +82,7 @@ module.exports = class {
         this.requestHook('get', '/search', args, successCallback);
     }
 
-    getFolder(successCallback, mediaCount, mediaOffset, mediaId=false)
-    {
+    getFolder(successCallback, mediaCount, mediaOffset, mediaId = false) {
         var args = this.commonArgs;
         args.media_count = mediaCount;
         args.media_offset = mediaOffset;
@@ -100,22 +94,21 @@ module.exports = class {
 
     }
 
-    request(type, path, data = {})
-    {
+    request(type, path, data = {}) {
         var result;
 
         $.ajax({
-            async : false,
-            url : this.baseUrl + path,
-            type : type,
+            async: false,
+            url: this.baseUrl + path,
+            type: type,
             headers: {
-                'Authorization' : 'CBX-SIMPLE-TOKEN Token=' + this.authToken
+                'Authorization': 'CBX-SIMPLE-TOKEN Token=' + this.authToken
             },
-            data : data,
-            success : function(response, status) {
+            data: data,
+            success: function (response, status) {
                 result = response;
             }.bind(this),
-            error : function(jqXHR, status, error) {
+            error: function (jqXHR, status, error) {
                 result = jqXHR;
             }
         });
