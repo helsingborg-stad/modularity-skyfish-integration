@@ -98,12 +98,16 @@ module.exports = class extends React.Component {
                 posts[currentPost].description = data.metadata.description.en || '';
                 posts[currentPost].publishDate = data.created || '';
 
+                if (typeof(data.metadata.camera_created) != 'undefined') {
+                    posts[currentPost].takenDate = new Date(data.metadata.camera_created * 1000).toLocaleString().split(' ')[0] || '';
+                }
+
                 if (data.metadata.keywords != null) {
                     posts[currentPost].keywords = data.metadata.keywords.en || [];
                 }
 
                 if (data.metadata.iptc != null) {
-                    posts[currentPost].takenDate = data.metadata.iptc.DateCreated || '';
+
                     posts[currentPost].photographer = data.metadata.iptc['By-line'] || '';
                 }
 
