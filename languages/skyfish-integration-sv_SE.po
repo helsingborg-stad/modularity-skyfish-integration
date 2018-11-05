@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Skyfish Integration\n"
-"POT-Creation-Date: 2018-10-19 13:43+0200\n"
-"PO-Revision-Date: 2018-10-19 13:43+0200\n"
+"POT-Creation-Date: 2018-11-05 12:15+0100\n"
+"PO-Revision-Date: 2018-11-05 12:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -53,15 +53,15 @@ msgstr ""
 msgid "Order by"
 msgstr "Sortera efter"
 
-#: acf-fields/php/skyfish-integration.php:52 source/php/Module/Skyfish.php:78
+#: acf-fields/php/skyfish-integration.php:52 source/php/Module/Skyfish.php:79
 msgid "Publish date"
 msgstr "Publiceringsdatum"
 
-#: acf-fields/php/skyfish-integration.php:53 source/php/Module/Skyfish.php:79
+#: acf-fields/php/skyfish-integration.php:53 source/php/Module/Skyfish.php:80
 msgid "Camera date"
 msgstr "Kameradatum"
 
-#: acf-fields/php/skyfish-integration.php:54 source/php/Module/Skyfish.php:80
+#: acf-fields/php/skyfish-integration.php:54 source/php/Module/Skyfish.php:81
 msgid "Relevance"
 msgstr "Relevans"
 
@@ -69,11 +69,11 @@ msgstr "Relevans"
 msgid "Order direction"
 msgstr "Sorteringsriktning"
 
-#: acf-fields/php/skyfish-integration.php:80 source/php/Module/Skyfish.php:81
+#: acf-fields/php/skyfish-integration.php:80 source/php/Module/Skyfish.php:82
 msgid "Descending"
 msgstr "Fallande"
 
-#: acf-fields/php/skyfish-integration.php:81 source/php/Module/Skyfish.php:82
+#: acf-fields/php/skyfish-integration.php:81 source/php/Module/Skyfish.php:83
 msgid "Ascending"
 msgstr "Stigande"
 
@@ -139,8 +139,8 @@ msgstr "Uppladdad"
 msgid "Resolution"
 msgstr "Upplösning"
 
-#: source/php/Module/Skyfish.php:66
-msgid "Storlek"
+#: source/php/Module/Skyfish.php:66 source/php/Module/Skyfish.php:71
+msgid "Size"
 msgstr "Storlek"
 
 #: source/php/Module/Skyfish.php:67
@@ -148,42 +148,42 @@ msgid "Mime Type"
 msgstr "Mime-typ"
 
 #: source/php/Module/Skyfish.php:68
+msgid "File type"
+msgstr "Filtyp"
+
+#: source/php/Module/Skyfish.php:69
 msgid "Taken"
 msgstr "Tagen"
 
-#: source/php/Module/Skyfish.php:69
+#: source/php/Module/Skyfish.php:70
 msgid "Photographer"
 msgstr "Fotograf"
 
-#: source/php/Module/Skyfish.php:70
-msgid "Size"
-msgstr "Storlek"
-
-#: source/php/Module/Skyfish.php:71
+#: source/php/Module/Skyfish.php:72
 msgid "Details"
 msgstr "Detaljer"
 
-#: source/php/Module/Skyfish.php:72
+#: source/php/Module/Skyfish.php:73
 msgid "Keywords"
 msgstr "Nyckelord"
 
-#: source/php/Module/Skyfish.php:73
+#: source/php/Module/Skyfish.php:74
 msgid "Go back"
 msgstr "Gå tillbaka"
 
-#: source/php/Module/Skyfish.php:74
+#: source/php/Module/Skyfish.php:75
 msgid "Original"
 msgstr "Original"
 
-#: source/php/Module/Skyfish.php:75
+#: source/php/Module/Skyfish.php:76
 msgid "Large"
 msgstr "Stor"
 
-#: source/php/Module/Skyfish.php:76
+#: source/php/Module/Skyfish.php:77
 msgid "Medium"
 msgstr "Mellan"
 
-#: source/php/Module/Skyfish.php:77
+#: source/php/Module/Skyfish.php:78
 msgid "Small"
 msgstr "Liten"
 
@@ -215,6 +215,9 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://github.com/helsingborg-stad"
 msgstr ""
+
+#~ msgid "Storlek"
+#~ msgstr "Storlek"
 
 #~ msgid "Publish Date"
 #~ msgstr "Publiceringsdatum"

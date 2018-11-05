@@ -26,7 +26,6 @@ module.exports = class extends React.Component {
         }
 
         this.fetchPosts = this.fetchPosts.bind(this);
-
     }
 
     componentDidMount()
@@ -369,7 +368,7 @@ module.exports = class extends React.Component {
                     [translation.resolution]: posts[currentPost].width + ' x ' + posts[currentPost].height + ' px' || '',
                     [translation.size]:  formatBytes(posts[currentPost].fileSize) || '',
                     [translation.photographer]: posts[currentPost].photographer || '',
-                    [translation.mimeType]: posts[currentPost].mimeType || ''
+                    [translation.fileType]: posts[currentPost].mimeType || ''
                 }
             };
         }
