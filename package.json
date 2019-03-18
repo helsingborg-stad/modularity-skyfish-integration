@@ -1,60 +1,60 @@
 {
-  "name": "skyfish-integration",
-  "version": "0.3.0",
-  "description": "Skyfish integration for Wordpress",
-  "main": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate.git"
-  },
-  "author": "Nikolas Ramstedt",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/helsingborg-stad/skyfish-integration/issues"
-  },
-  "homepage": "https://github.com/helsingborg-stad/skyfish-integration",
-  "peerDependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-export-default-from": "^7.0.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0",
-    "babelify": "^10.0.0",
-    "browserify": "^16.2.3",
-    "del": "^3.0.0",
-    "event-stream": "^4.0.0",
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-clean-css": "^3.10.0",
-    "gulp-eslint": "^5.0.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-react": "^3.1.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-rev": "^8.1.1",
-    "gulp-sass": "^2.1.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-streamify": "^1.0.2",
-    "gulp-uglify": "^1.1.0",
-    "gulp-util": "^3.0.8",
-    "hbg-react": "^0.3.3",
-    "node-notifier": "^5.2.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-onclickoutside": "^6.7.1",
-    "reactify": "^1.1.1",
-    "rev-del": "^1.0.5",
-    "run-sequence": "^2.2.1",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
-  },
-  "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/polyfill": "^7.0.0"
-  }
+    "name": "skyfish-integration",
+    "version": "0.3.0",
+    "description": "Skyfish integration for Wordpress",
+    "main": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate.git"
+    },
+    "author": "Nikolas Ramstedt",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/helsingborg-stad/skyfish-integration/issues"
+    },
+    "homepage": "https://github.com/helsingborg-stad/skyfish-integration",
+    "peerDependencies": {
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.1.2",
+        "@babel/plugin-proposal-export-default-from": "^7.0.0",
+        "@babel/preset-env": "^7.1.0",
+        "@babel/preset-react": "^7.0.0",
+        "babelify": "^10.0.0",
+        "browserify": "^16.2.3",
+        "del": "^3.0.0",
+        "event-stream": "^4.0.0",
+        "gulp": "^3.8.11",
+        "gulp-autoprefixer": "^3.1.0",
+        "gulp-clean-css": "^3.10.0",
+        "gulp-eslint": "^5.0.0",
+        "gulp-plumber": "^1.0.1",
+        "gulp-react": "^3.1.0",
+        "gulp-rename": "^1.2.0",
+        "gulp-rev": "^8.1.1",
+        "gulp-sass": "^2.1.0",
+        "gulp-sourcemaps": "^2.6.4",
+        "gulp-streamify": "^1.0.2",
+        "gulp-uglify": "^1.1.0",
+        "gulp-util": "^3.0.8",
+        "hbg-react": "^0.3.3",
+        "node-notifier": "^5.2.1",
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2",
+        "react-onclickoutside": "^6.7.1",
+        "reactify": "^1.1.1",
+        "rev-del": "^1.0.5",
+        "run-sequence": "^2.2.1",
+        "vinyl-buffer": "^1.0.1",
+        "vinyl-source-stream": "^2.0.0"
+    },
+    "dependencies": {
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@babel/polyfill": "^7.0.0"
+    }
 }
