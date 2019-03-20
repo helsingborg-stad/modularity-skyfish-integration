@@ -10,7 +10,6 @@
 
 const gulp = require("gulp");
 const sass = require("gulp-sass");
-const uglify = require("gulp-uglify");
 const cleanCSS = require("gulp-clean-css");
 const rename = require("gulp-rename");
 const autoprefixer = require("gulp-autoprefixer");
