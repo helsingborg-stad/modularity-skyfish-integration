@@ -28,7 +28,6 @@
     opacity: 0;
 }
 
-
 .skyfish-module__index img:hover {
     cursor: pointer;
 }
@@ -51,7 +50,7 @@
 
 .skyfish-module {
     input[type='number'] {
-        -moz-appearance:textfield;
+        -moz-appearance: textfield;
         text-align: center;
     }
 
@@ -77,11 +76,10 @@
     }
 }
 
-
 .skyfish-module .skyfish-module__details {
     .c-dropdown .c-dropdown__menu {
         border: solid 1px #dedede;
-         min-width: 240px;
+        min-width: 240px;
     }
 }
 .skyfish-module {
@@ -101,7 +99,10 @@
     }
 }
 
-
 .skyfish-module__pagination-input {
     max-width: 48px;
+}
+
+.skyfish-module .u-bg-initial {
+    background: initial;
 }
