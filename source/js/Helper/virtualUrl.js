@@ -4,7 +4,7 @@ import queryString from "query-string";
  * Getting Skyfish Id
  * @return (object) id
  */
-const getMediaID = () => {
+export const getMediaID = () => {
 	let url = new URL(window.location).pathname.split("/");
 	if (url.indexOf("skyfishId") != -1) {
 		let newUrl = {};
@@ -21,7 +21,7 @@ const getMediaID = () => {
  * Changing url address
  * @return void
  */
-const changeVirtualUrl = (id = false) => {
+export const changeVirtualUrl = (id = false) => {
 	const queryStr = queryString.parse(location.search);
 	const mediaId = queryStr.mediaId ? queryStr.mediaId : false;
 	let uri = window.location.toString();
@@ -57,7 +57,7 @@ const changeVirtualUrl = (id = false) => {
  * Toogle Details dependant on state
  * @return void
  */
-const showDetail = state => {
+export const showDetail = state => {
 	if (state.showDetails === false) {
 		const url = new URL(window.location).pathname.split("/");
 		const mediaId = url.indexOf("skyfishId") != 1 ? getMediaID() : "";
@@ -69,9 +69,4 @@ const showDetail = state => {
 		window.history.pushState({}, document.title, newPath.replace("/skyfishId", ""));
 		changeVirtualUrl();
 	}
-};
-
-module.exports = {
-	showDetail: showDetail,
-	getMediaID: getMediaID,
 };

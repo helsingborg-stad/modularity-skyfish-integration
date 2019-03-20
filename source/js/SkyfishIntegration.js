@@ -1,7 +1,7 @@
 import SkyfishApi from "./Api/SkyfishParser.js";
 import SkyfishModule from "./Module/SkyfishModule.js";
 
-const App = class {
+class App {
 	constructor() {
 		this.renderModule();
 	}
@@ -25,6 +25,6 @@ const App = class {
 
 		ReactDOM.render(<SkyfishModule api={api} />, domElement);
 	}
-};
+}
 
 new App();

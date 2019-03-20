@@ -1,6 +1,6 @@
 import AuthForm from "./Admin/AuthForm.js";
 
-const App = class {
+class App {
 	constructor() {
 		if (typeof skyfishAdminData != "undefined") {
 			this.renderAuthForm();
@@ -15,6 +15,6 @@ const App = class {
 
 		ReactDOM.render(<AuthForm />, element);
 	}
-};
+}
 
 new App();

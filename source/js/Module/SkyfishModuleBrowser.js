@@ -5,7 +5,7 @@ import { Dropdown } from "hbg-react";
 
 const { translation } = skyfishAjaxObject;
 
-module.exports = class extends React.Component {
+export default class extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -152,4 +152,4 @@ module.exports = class extends React.Component {
 			</div>
 		);
 	}
-};
+}

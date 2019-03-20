@@ -2,7 +2,7 @@ import { Dropdown, Button } from "hbg-react";
 import { capitalizeFirstLetter } from "../Helper/text.js";
 const { translation } = skyfishAjaxObject;
 
-module.exports = props => {
+export default props => {
 	const Keywords = props => {
 		const { words } = props;
 
@@ -92,7 +92,7 @@ module.exports = props => {
 			<div className="grid">
 				<div className="grid-xs-12 u-mb-3">
 					<div className="skyfish-module__goback">
-						<Button color="palette-2" onClick={props.action.goBack || null}>
+						<Button onClick={props.action.goBack || null}>
 							<i className="pricon pricon-back" />
 							{translation.goBack}
 						</Button>

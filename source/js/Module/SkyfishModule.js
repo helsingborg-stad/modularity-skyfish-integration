@@ -2,11 +2,11 @@ import SkyfishModuleBrowser from "./SkyfishModuleBrowser.js";
 import SkyfishModuleDetails from "./SkyfishModuleDetails.js";
 import { forceDownload, formatBytes } from "../Helper/files.js";
 import { reSize } from "../Helper/ratio.js";
-import virtualUrl from "../Helper/virtualUrl.js";
+import { getMediaID, showDetail } from "../Helper/virtualUrl.js";
 
 const { translation } = skyfishAjaxObject;
 
-module.exports = class extends React.Component {
+export default class extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -29,7 +29,7 @@ module.exports = class extends React.Component {
 		const { api } = this.props;
 		const { postsPerPage } = this.state;
 		const url = new URL(window.location).pathname.split("/");
-		const mediaId = url.indexOf("skyfishId") != -1 ? virtualUrl.getMediaID() : false;
+		const mediaId = url.indexOf("skyfishId") != -1 ? getMediaID() : false;
 
 		if (mediaId) {
 			api.getFolder(this.fetchPosts, postsPerPage, 0, mediaId);
@@ -227,7 +227,7 @@ module.exports = class extends React.Component {
 		}
 
 		this.setState((state, props) => {
-			virtualUrl.showDetail(state);
+			showDetail(state);
 			return {
 				showDetails: !state.showDetails ? true : false,
 			};
@@ -447,4 +447,4 @@ module.exports = class extends React.Component {
 			</div>
 		);
 	}
-};
+}
