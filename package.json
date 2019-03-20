@@ -23,6 +23,8 @@
     "devDependencies": {
         "@babel/core": "^7.1.2",
         "@babel/plugin-proposal-export-default-from": "^7.0.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+        "@babel/polyfill": "^7.0.0",
         "@babel/preset-env": "^7.1.0",
         "@babel/preset-react": "^7.0.0",
         "babelify": "^10.0.0",
@@ -40,13 +42,12 @@
         "gulp-sass": "^2.1.0",
         "gulp-sourcemaps": "^2.6.4",
         "gulp-streamify": "^1.0.2",
-        "gulp-uglify": "^1.1.0",
+        "gulp-terser": "^1.1.7",
         "gulp-util": "^3.0.8",
-        "hbg-react": "^0.3.3",
+        "hbg-react": "^0.11.8",
         "node-notifier": "^5.2.1",
         "react": "^16.5.2",
         "react-dom": "^16.5.2",
-        "react-onclickoutside": "^6.7.1",
         "reactify": "^1.1.1",
         "rev-del": "^1.0.5",
         "run-sequence": "^2.2.1",
@@ -54,7 +55,6 @@
         "vinyl-source-stream": "^2.0.0"
     },
     "dependencies": {
-        "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-        "@babel/polyfill": "^7.0.0"
+        "query-string": "^6.4.0"
     }
 }
