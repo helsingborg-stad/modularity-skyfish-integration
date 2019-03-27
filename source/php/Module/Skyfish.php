@@ -29,7 +29,13 @@ class Skyfish extends \Modularity\Module
 
     public function script()
     {
-        \SkyfishIntegration\Helper\React::enqueue();
+        //Check if modularity is comatible.
+        if (!class_exists('\Modularity\Helper\React')) {
+            error_log("Skyfish cannot run. This plugin requires modularity version 2.11.0 or higher.");
+            return;
+        }
+        
+        (class_exists('\Modularity\Helper\React')) ? \Modularity\Helper\React::enqueue('16.8') : \SkyfishIntegration\Helper\React::enqueue('16.8');
 
         wp_enqueue_script('skyfish-integration-js');
         wp_localize_script('skyfish-integration-js', 'skyfishAjaxObject', $this->scriptData());
