@@ -3,11 +3,11 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_5bba400a04b6c',
-    'title' => __('Skyfish Integration - Settings', 'skyfish-integration'),
+    'title' => 'Skyfish Integration - Inställningar',
     'fields' => array(
         0 => array(
             'key' => 'field_5bba400d10454',
-            'label' => __('Select folder', 'skyfish-integration'),
+            'label' => __('Välj mapp', 'skyfish-integration'),
             'name' => 'skyfish_folder',
             'type' => 'select',
             'instructions' => '',
@@ -19,12 +19,21 @@
                 'id' => '',
             ),
             'choices' => array(
-                424682 => __('Public', 'skyfish-integration'),
-                819213 => __('Videoklipp', 'skyfish-integration'),
-                827312 => __('Public', 'skyfish-integration'),
-                845327 => __('CC BY-bilder', 'skyfish-integration'),
-                1296342 => __('Trash', 'skyfish-integration'),
-                1297856 => __('Api', 'skyfish-integration'),
+                424682 => 'Public',
+                803040 => 'SFF',
+                827312 => 'Public',
+                1296342 => 'Trash',
+                1297856 => 'Api',
+                1354062 => 'Helsingborgs stad',
+                1428498 => 'Samtycke',
+                1539268 => 'Personal',
+                1539324 => 'Ing-Marie Rundwall',
+                1539327 => 'Maria Winberg-Nordström',
+                1539328 => 'Övrig personal',
+                1539778 => 'Tony Mufic',
+                1539779 => 'Maria Holm',
+                827167 => 'Manual',
+                1326041 => 'Tina Carlström - kontaktcenter',
             ),
             'default_value' => array(
             ),
@@ -37,7 +46,7 @@
         ),
         1 => array(
             'key' => 'field_5bc723fbe4179',
-            'label' => __('Order by', 'skyfish-integration'),
+            'label' => __('Sortera efter', 'skyfish-integration'),
             'name' => 'skyfish_order',
             'type' => 'select',
             'instructions' => '',
@@ -49,9 +58,9 @@
                 'id' => '',
             ),
             'choices' => array(
-                'created' => __('Publish date', 'skyfish-integration'),
-                'camera_created' => __('Camera date', 'skyfish-integration'),
-                'relevance' => __('Relevance', 'skyfish-integration'),
+                'created' => __('Publiceringsdatum', 'skyfish-integration'),
+                'camera_created' => __('Kameradatum', 'skyfish-integration'),
+                'relevance' => __('Relevans', 'skyfish-integration'),
             ),
             'default_value' => array(
                 0 => 'created',
@@ -65,7 +74,7 @@
         ),
         2 => array(
             'key' => 'field_5bc724eae417a',
-            'label' => __('Order direction', 'skyfish-integration'),
+            'label' => __('Sorteringsriktning', 'skyfish-integration'),
             'name' => 'skyfish_direction',
             'type' => 'select',
             'instructions' => '',
@@ -77,8 +86,8 @@
                 'id' => '',
             ),
             'choices' => array(
-                'desc' => __('Descending', 'skyfish-integration'),
-                'asc' => __('Ascending', 'skyfish-integration'),
+                'desc' => __('Fallande', 'skyfish-integration'),
+                'asc' => __('Stigande', 'skyfish-integration'),
             ),
             'default_value' => array(
                 0 => 'desc',
@@ -92,7 +101,7 @@
         ),
         3 => array(
             'key' => 'field_5bc7283ce417c',
-            'label' => __('Search mode', 'skyfish-integration'),
+            'label' => __('Sökläge', 'skyfish-integration'),
             'name' => 'skyfish_search_mode',
             'type' => 'select',
             'instructions' => '',
@@ -104,9 +113,9 @@
                 'id' => '',
             ),
             'choices' => array(
-                'default' => __('Default', 'skyfish-integration'),
-                'strict_and_search' => __('Strict', 'skyfish-integration'),
-                'wildcards' => __('Soft', 'skyfish-integration'),
+                'default' => __('Standard', 'skyfish-integration'),
+                'strict_and_search' => __('Strikt', 'skyfish-integration'),
+                'wildcards' => __('Mjuk', 'skyfish-integration'),
             ),
             'default_value' => array(
                 0 => 'default',
@@ -116,6 +125,22 @@
             'ui' => 0,
             'return_format' => 'value',
             'ajax' => 0,
+            'placeholder' => '',
+        ),
+        4 => array(
+            'key' => 'field_5d233c69d6aee',
+            'label' => __('No connection fallback', 'skyfish-integration'),
+            'name' => 'skyfish_no_connection_fallback',
+            'type' => 'url',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
             'placeholder' => '',
         ),
     ),

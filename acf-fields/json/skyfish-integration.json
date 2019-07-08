@@ -1,10 +1,10 @@
 [{
     "key": "group_5bba400a04b6c",
-    "title": "Skyfish Integration - Settings",
+    "title": "Skyfish Integration - Inst\u00e4llningar",
     "fields": [
         {
             "key": "field_5bba400d10454",
-            "label": "Select folder",
+            "label": "V\u00e4lj mapp",
             "name": "skyfish_folder",
             "type": "select",
             "instructions": "",
@@ -17,11 +17,20 @@
             },
             "choices": {
                 "424682": "Public",
-                "819213": "Videoklipp",
+                "803040": "SFF",
                 "827312": "Public",
-                "845327": "CC BY-bilder",
                 "1296342": "Trash",
-                "1297856": "Api"
+                "1297856": "Api",
+                "1354062": "Helsingborgs stad",
+                "1428498": "Samtycke",
+                "1539268": "Personal",
+                "1539324": "Ing-Marie Rundwall",
+                "1539327": "Maria Winberg-Nordstr\u00f6m",
+                "1539328": "\u00d6vrig personal",
+                "1539778": "Tony Mufic",
+                "1539779": "Maria Holm",
+                "827167": "Manual",
+                "1326041": "Tina Carlstr\u00f6m - kontaktcenter"
             },
             "default_value": [],
             "allow_null": 0,
@@ -33,7 +42,7 @@
         },
         {
             "key": "field_5bc723fbe4179",
-            "label": "Order by",
+            "label": "Sortera efter",
             "name": "skyfish_order",
             "type": "select",
             "instructions": "",
@@ -45,9 +54,9 @@
                 "id": ""
             },
             "choices": {
-                "created": "Publish date",
-                "camera_created": "Camera date",
-                "relevance": "Relevance"
+                "created": "Publiceringsdatum",
+                "camera_created": "Kameradatum",
+                "relevance": "Relevans"
             },
             "default_value": [
                 "created"
@@ -61,7 +70,7 @@
         },
         {
             "key": "field_5bc724eae417a",
-            "label": "Order direction",
+            "label": "Sorteringsriktning",
             "name": "skyfish_direction",
             "type": "select",
             "instructions": "",
@@ -73,8 +82,8 @@
                 "id": ""
             },
             "choices": {
-                "desc": "Descending",
-                "asc": "Ascending"
+                "desc": "Fallande",
+                "asc": "Stigande"
             },
             "default_value": [
                 "desc"
@@ -88,7 +97,7 @@
         },
         {
             "key": "field_5bc7283ce417c",
-            "label": "Search mode",
+            "label": "S\u00f6kl\u00e4ge",
             "name": "skyfish_search_mode",
             "type": "select",
             "instructions": "",
@@ -100,9 +109,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Default",
-                "strict_and_search": "Strict",
-                "wildcards": "Soft"
+                "default": "Standard",
+                "strict_and_search": "Strikt",
+                "wildcards": "Mjuk"
             },
             "default_value": [
                 "default"
@@ -112,6 +121,22 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5d233c69d6aee",
+            "label": "No connection fallback",
+            "name": "skyfish_no_connection_fallback",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
             "placeholder": ""
         }
     ],

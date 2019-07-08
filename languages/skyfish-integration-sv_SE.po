@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Skyfish Integration\n"
-"POT-Creation-Date: 2018-11-05 12:15+0100\n"
-"PO-Revision-Date: 2018-11-05 12:16+0100\n"
+"POT-Creation-Date: 2019-07-08 17:30+0200\n"
+"PO-Revision-Date: 2019-07-08 17:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,78 +20,57 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: acf-fields/php/skyfish-integration.php:6
-msgid "Skyfish Integration - Settings"
-msgstr "Skyfish Integration - Inställningar"
-
 #: acf-fields/php/skyfish-integration.php:10
-msgid "Select folder"
-msgstr "Välj mapp"
-
-#: acf-fields/php/skyfish-integration.php:22
-#: acf-fields/php/skyfish-integration.php:24
-msgid "Public"
+msgid "Välj mapp"
 msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:23
-msgid "Videoklipp"
+#: acf-fields/php/skyfish-integration.php:49
+msgid "Sortera efter"
 msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:25
-msgid "CC BY-bilder"
+#: acf-fields/php/skyfish-integration.php:61
+msgid "Publiceringsdatum"
 msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:26
-msgid "Trash"
+#: acf-fields/php/skyfish-integration.php:62
+msgid "Kameradatum"
 msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:27
-msgid "Api"
+#: acf-fields/php/skyfish-integration.php:63
+msgid "Relevans"
 msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:40
-msgid "Order by"
-msgstr "Sortera efter"
+#: acf-fields/php/skyfish-integration.php:77
+msgid "Sorteringsriktning"
+msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:52 source/php/Module/Skyfish.php:79
-msgid "Publish date"
-msgstr "Publiceringsdatum"
+#: acf-fields/php/skyfish-integration.php:89
+msgid "Fallande"
+msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:53 source/php/Module/Skyfish.php:80
-msgid "Camera date"
-msgstr "Kameradatum"
+#: acf-fields/php/skyfish-integration.php:90
+msgid "Stigande"
+msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:54 source/php/Module/Skyfish.php:81
-msgid "Relevance"
-msgstr "Relevans"
+#: acf-fields/php/skyfish-integration.php:104
+msgid "Sökläge"
+msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:68
-msgid "Order direction"
-msgstr "Sorteringsriktning"
+#: acf-fields/php/skyfish-integration.php:116
+msgid "Standard"
+msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:80 source/php/Module/Skyfish.php:82
-msgid "Descending"
-msgstr "Fallande"
+#: acf-fields/php/skyfish-integration.php:117
+msgid "Strikt"
+msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:81 source/php/Module/Skyfish.php:83
-msgid "Ascending"
-msgstr "Stigande"
+#: acf-fields/php/skyfish-integration.php:118
+msgid "Mjuk"
+msgstr ""
 
-#: acf-fields/php/skyfish-integration.php:95
-msgid "Search mode"
-msgstr "Sökläge"
-
-#: acf-fields/php/skyfish-integration.php:107
-msgid "Default"
-msgstr "Standard"
-
-#: acf-fields/php/skyfish-integration.php:108
-msgid "Strict"
-msgstr "Strikt"
-
-#: acf-fields/php/skyfish-integration.php:109
-msgid "Soft"
-msgstr "Mjuk"
+#: acf-fields/php/skyfish-integration.php:132
+msgid "No connection fallback"
+msgstr ""
 
 #: source/php/Module/Skyfish.php:12
 msgid "Skyfish Gallery"
@@ -105,87 +84,121 @@ msgstr "Skyfish Gallerier"
 msgid "Retrives and output downloadable images from Skyfish."
 msgstr ""
 
-#: source/php/Module/Skyfish.php:58
+#: source/php/Module/Skyfish.php:66
 #, php-format
 msgid "Found %s items, display page %s of %s."
 msgstr "Hittade %s objekt, visar sida %s av %s."
 
-#: source/php/Module/Skyfish.php:59
+#: source/php/Module/Skyfish.php:67
 #, php-format
 msgid "%s results, display page %s of %s."
 msgstr "%s resultat, visar sida %s av %s."
 
-#: source/php/Module/Skyfish.php:60
+#: source/php/Module/Skyfish.php:68
 msgid "Search"
 msgstr "Sök"
 
-#: source/php/Module/Skyfish.php:61
+#: source/php/Module/Skyfish.php:69
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/Skyfish.php:62
+#: source/php/Module/Skyfish.php:70
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/Skyfish.php:63
+#: source/php/Module/Skyfish.php:71
 msgid "Download"
 msgstr "Ladda ner"
 
-#: source/php/Module/Skyfish.php:64
+#: source/php/Module/Skyfish.php:72
 msgid "Uploaded"
 msgstr "Uppladdad"
 
-#: source/php/Module/Skyfish.php:65
+#: source/php/Module/Skyfish.php:73
 msgid "Resolution"
 msgstr "Upplösning"
 
-#: source/php/Module/Skyfish.php:66 source/php/Module/Skyfish.php:71
+#: source/php/Module/Skyfish.php:74 source/php/Module/Skyfish.php:79
 msgid "Size"
 msgstr "Storlek"
 
-#: source/php/Module/Skyfish.php:67
+#: source/php/Module/Skyfish.php:75
 msgid "Mime Type"
 msgstr "Mime-typ"
 
-#: source/php/Module/Skyfish.php:68
+#: source/php/Module/Skyfish.php:76
 msgid "File type"
 msgstr "Filtyp"
 
-#: source/php/Module/Skyfish.php:69
+#: source/php/Module/Skyfish.php:77
 msgid "Taken"
 msgstr "Tagen"
 
-#: source/php/Module/Skyfish.php:70
+#: source/php/Module/Skyfish.php:78
 msgid "Photographer"
 msgstr "Fotograf"
 
-#: source/php/Module/Skyfish.php:72
+#: source/php/Module/Skyfish.php:80
 msgid "Details"
 msgstr "Detaljer"
 
-#: source/php/Module/Skyfish.php:73
+#: source/php/Module/Skyfish.php:81
 msgid "Keywords"
 msgstr "Nyckelord"
 
-#: source/php/Module/Skyfish.php:74
+#: source/php/Module/Skyfish.php:82
 msgid "Go back"
 msgstr "Gå tillbaka"
 
-#: source/php/Module/Skyfish.php:75
+#: source/php/Module/Skyfish.php:83
 msgid "Original"
 msgstr "Original"
 
-#: source/php/Module/Skyfish.php:76
+#: source/php/Module/Skyfish.php:84
 msgid "Large"
 msgstr "Stor"
 
-#: source/php/Module/Skyfish.php:77
+#: source/php/Module/Skyfish.php:85
 msgid "Medium"
 msgstr "Mellan"
 
-#: source/php/Module/Skyfish.php:78
+#: source/php/Module/Skyfish.php:86
 msgid "Small"
 msgstr "Liten"
+
+#: source/php/Module/Skyfish.php:87
+msgid "Publish date"
+msgstr "Publiceringsdatum"
+
+#: source/php/Module/Skyfish.php:88
+msgid "Camera date"
+msgstr "Kameradatum"
+
+#: source/php/Module/Skyfish.php:89
+msgid "Relevance"
+msgstr "Relevans"
+
+#: source/php/Module/Skyfish.php:90
+msgid "Descending"
+msgstr "Fallande"
+
+#: source/php/Module/Skyfish.php:91
+msgid "Ascending"
+msgstr "Stigande"
+
+#: source/php/Module/Skyfish.php:92
+msgid ""
+"We dont have any connection to Skyfish at the moment. Please visit Skyfish."
+"com to see all images: "
+msgstr ""
+"Vi har problem att kontakta vår bildbank hos Skyfish. Klicka på länken för "
+"att se alla våra bilder hos Skyfish.com: "
+
+#: source/php/Module/Skyfish.php:93
+msgid "No connection to server. Please come back later."
+msgstr ""
+"Det har uppstått ett problem att kontakta vår bildbank, kom tillbaka "
+"senare."
 
 #: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:364
 msgid "Export with AcfExportManager"
@@ -215,6 +228,37 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://github.com/helsingborg-stad"
 msgstr ""
+
+#~ msgid ""
+#~ "We dont have any connection to Skyfish at the moment. Please visit \n"
+#~ "                Skyfish.com to see all images: "
+#~ msgstr ""
+#~ "Vi har problem att kontakta vår bildbank hos Skyfish. Klicka på länken "
+#~ "för att se alla våra bilder hos Skyfish.com: "
+
+#~ msgid "Skyfish Integration - Settings"
+#~ msgstr "Skyfish Integration - Inställningar"
+
+#~ msgid "Select folder"
+#~ msgstr "Välj mapp"
+
+#~ msgid "Order by"
+#~ msgstr "Sortera efter"
+
+#~ msgid "Order direction"
+#~ msgstr "Sorteringsriktning"
+
+#~ msgid "Search mode"
+#~ msgstr "Sökläge"
+
+#~ msgid "Default"
+#~ msgstr "Standard"
+
+#~ msgid "Strict"
+#~ msgstr "Strikt"
+
+#~ msgid "Soft"
+#~ msgstr "Mjuk"
 
 #~ msgid "Storlek"
 #~ msgstr "Storlek"

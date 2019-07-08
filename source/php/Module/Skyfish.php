@@ -49,6 +49,7 @@ class Skyfish extends \Modularity\Module
         $api = new \SkyfishIntegration\Api();
         $api->authenticate();
 
+
         //Skyfish API Settings
         $data['apiSettings'] = array(
             'authToken'     => $api->token,
@@ -56,7 +57,8 @@ class Skyfish extends \Modularity\Module
             'rootFolder'    => (get_field('skyfish_folder', $this->data['ID'])) ? get_field('skyfish_folder', $this->data['ID']) : null,
             'orderBy'       => (get_field('skyfish_order', $this->data['ID'])) ? get_field('skyfish_order', $this->data['ID']) : 'created',
             'orderDirection' => (get_field('skyfish_direction', $this->data['ID'])) ? get_field('skyfish_direction', $this->data['ID']) : 'desc',
-            'searchMode'    => (get_field('skyfish_search_mode', $this->data['ID'])) ? get_field('skyfish_search_mode', $this->data['ID']) : 'default'
+            'searchMode'    => (get_field('skyfish_search_mode', $this->data['ID'])) ? get_field('skyfish_search_mode', $this->data['ID']) : 'default',
+            'fallbackUrl'    => (get_field('skyfish_no_connection_fallback', $this->data['ID'])) ? get_field('skyfish_no_connection_fallback', $this->data['ID']) : '',
         );
 
         //Translation strings
@@ -86,7 +88,9 @@ class Skyfish extends \Modularity\Module
             'cameraDate' => __('Camera date', 'skyfish-integration'),
             'relevance' => __('Relevance', 'skyfish-integration'),
             'descending' => __('Descending', 'skyfish-integration'),
-            'ascending' => __('Ascending', 'skyfish-integration')
+            'ascending' => __('Ascending', 'skyfish-integration'),
+            'ajaxError' => __('We dont have any connection to Skyfish at the moment. Please visit Skyfish.com to see all images: ', 'skyfish-integration'),
+            'ajaxErrorDefault' => __('No connection to server. Please come back later.', 'skyfish-integration')
         );
 
         //Send to script

@@ -4,9 +4,9 @@ const $ = jQuery.noConflict();
 
 module.exports = class {
     constructor(settings) {
-        const {authToken, baseUrl, rootFolder, orderBy, orderDirection, searchMode} = settings;
+        const { authToken, baseUrl, rootFolder, orderBy, orderDirection, searchMode } = settings;
 
-        if (typeof(authToken) == 'undefined' || !authToken) {
+        if (typeof authToken == 'undefined' || !authToken) {
             return;
         }
 
@@ -24,18 +24,18 @@ module.exports = class {
             'camera_created',
             'created',
             'unique_media_id',
-            'thumbnail_url_ssl'
+            'thumbnail_url_ssl',
         ];
 
         this.commonArgs = {
             return_values: this.commonReturnValues,
             folder_ids: rootFolder,
             direction: orderDirection || 'desc',
-            order: orderBy || 'created'
+            order: orderBy || 'created',
         };
 
         //Add query type if defined as anything but default
-        if (typeof(searchMode) != 'undefined' && searchMode != 'default') {
+        if (typeof searchMode != 'undefined' && searchMode != 'default') {
             this.commonArgs.query_type = searchMode;
         }
     }
@@ -45,14 +45,15 @@ module.exports = class {
             url: this.baseUrl + path,
             type: type,
             headers: {
-                'Authorization': 'CBX-SIMPLE-TOKEN Token=' + this.authToken
+                Authorization: 'CBX-SIMPLE-TOKEN Token=' + this.authToken,
             },
             data: data,
-            success: function (response, status) {
-                successCallback(response)
+            success: function(response, status) {
+                successCallback(response);
             },
-            error: function (jqXHR, status, error) {
-            }
+            error: function(jqXHR, status, error, response) {
+                successCallback(false);
+            },
         });
     }
 
@@ -60,9 +61,11 @@ module.exports = class {
         var root = '';
 
         this.listFolders().forEach(folder => {
-            if (typeof(folder.name) != 'undefined'
-                && folder.name == 'Public'
-                && typeof(folder.id) != 'undefined') {
+            if (
+                typeof folder.name != 'undefined' &&
+                folder.name == 'Public' &&
+                typeof folder.id != 'undefined'
+            ) {
                 root = folder.id;
             }
         });
@@ -91,7 +94,6 @@ module.exports = class {
             args.unique_media_id = mediaId;
         }
         this.requestHook('get', '/search', args, successCallback);
-
     }
 
     request(type, path, data = {}) {
@@ -102,17 +104,17 @@ module.exports = class {
             url: this.baseUrl + path,
             type: type,
             headers: {
-                'Authorization': 'CBX-SIMPLE-TOKEN Token=' + this.authToken
+                Authorization: 'CBX-SIMPLE-TOKEN Token=' + this.authToken,
             },
             data: data,
-            success: function (response, status) {
+            success: function(response, status) {
                 result = response;
             }.bind(this),
-            error: function (jqXHR, status, error) {
-                result = jqXHR;
-            }
+            error: function(jqXHR, status, error) {
+                result = { ajaxError: true };
+            },
         });
 
         return result;
     }
-}
+};
