@@ -1,0 +1,6 @@
+{
+  "css/skyfish-integration.css": "css/skyfish-integration.min.css",
+  "css/skyfish-integration-admin.css": "css/skyfish-integration-admin.min.css",
+  "js/SkyfishIntegration.js": "js/SkyfishIntegration.min.js",
+  "js/SkyfishIntegrationAdmin.js": "js/SkyfishIntegrationAdmin.min.js"
+}
