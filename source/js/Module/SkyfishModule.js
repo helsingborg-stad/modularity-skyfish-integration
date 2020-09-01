@@ -58,9 +58,6 @@ export default class extends React.Component {
 
         this.setState((state, props) => {
             const posts = data.response.media.map((media, index) => {
-
-                console.log(media); 
-
                 return {
                     id: media.unique_media_id,
                     type: media.media_type,
