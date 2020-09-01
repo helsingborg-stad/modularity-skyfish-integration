@@ -74,6 +74,7 @@ class Skyfish extends \Modularity\Module
             'size' => __('Size', 'skyfish-integration'),
             'mimeType' => __('Mime Type', 'skyfish-integration'),
             'fileType' => __('File type', 'skyfish-integration'),
+            'fileName' => __('File name', 'skyfish-integration'),
             'taken' => __('Taken', 'skyfish-integration'),
             'photographer' => __('Photographer', 'skyfish-integration'),
             'storlek' => __('Size', 'skyfish-integration'),
