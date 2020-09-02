@@ -149,7 +149,7 @@ module.exports = {
          * Output CSS files
          */
         new MiniCssExtractPlugin({
-            filename: ifProduction('[name].min.css', '[name].min.css')
+            filename: ifProduction('[name].[contenthash].min.css', '[name][contenthash].min.css')
         }),
         
         /**

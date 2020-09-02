@@ -1,6 +1,6 @@
 {
-  "css/skyfish-integration.css": "css/skyfish-integration.min.css",
-  "css/skyfish-integration-admin.css": "css/skyfish-integration-admin.min.css",
-  "js/SkyfishIntegration.js": "js/SkyfishIntegration.7230518114a4fc07c4d8.min.js",
-  "js/SkyfishIntegrationAdmin.js": "js/SkyfishIntegrationAdmin.327b72608c44db92ceb2.min.js"
+  "css/skyfish-integration.css": "css/skyfish-integration.d15708345a59022eb705.min.css",
+  "css/skyfish-integration-admin.css": "css/skyfish-integration-admin.e5879bc4a9c04f1bfa60.min.css",
+  "js/SkyfishIntegration.js": "js/SkyfishIntegration.b059ce4b11a2783d21e6.min.js",
+  "js/SkyfishIntegrationAdmin.js": "js/SkyfishIntegrationAdmin.91309a18e8f2af4ca76b.min.js"
 }
