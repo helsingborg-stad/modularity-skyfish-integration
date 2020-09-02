@@ -223,7 +223,7 @@ module.exports = {
             },
         })),
 
-        new BundleAnalyzerPlugin()
+        //new BundleAnalyzerPlugin()
 
     ]).filter(Boolean),
     devtool: ifProduction('none', 'eval-source-map'),
