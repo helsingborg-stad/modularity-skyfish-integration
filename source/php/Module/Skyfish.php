@@ -43,12 +43,16 @@ class Skyfish extends \Modularity\Module
 
     public function scriptData()
     {
+        //Bail if no data object id available.
+        if(empty($this->data)) {
+            return; 
+        }
+
         $data = array();
         $data['nonce'] = wp_create_nonce('skyfishIntegration');
 
         $api = new \SkyfishIntegration\Api();
         $api->authenticate();
-
 
         //Skyfish API Settings
         $data['apiSettings'] = array(
@@ -74,6 +78,7 @@ class Skyfish extends \Modularity\Module
             'size' => __('Size', 'skyfish-integration'),
             'mimeType' => __('Mime Type', 'skyfish-integration'),
             'fileType' => __('File type', 'skyfish-integration'),
+            'fileName' => __('File name', 'skyfish-integration'),
             'taken' => __('Taken', 'skyfish-integration'),
             'photographer' => __('Photographer', 'skyfish-integration'),
             'storlek' => __('Size', 'skyfish-integration'),

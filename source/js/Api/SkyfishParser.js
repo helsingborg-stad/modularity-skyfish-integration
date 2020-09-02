@@ -25,6 +25,7 @@ module.exports = class {
             'created',
             'unique_media_id',
             'thumbnail_url_ssl',
+            'title'
         ];
 
         this.commonArgs = {

@@ -1,6 +1,6 @@
 import {WordpressAuthForm as AuthForm} from 'hbg-react';
 const $ = jQuery.noConflict();
-module.exports = class extends React.Component {
+export default class extends React.Component {
     constructor(props)
     {
         super(props);

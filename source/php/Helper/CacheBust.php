@@ -13,11 +13,11 @@ class CacheBust
     public static function name($name, $returnName = true)
     {
         if ($returnName == true && defined('DEV_MODE') && DEV_MODE == true) {
-            return $name;
+            //return $name;
         }
 
         $revManifest = self::getRevManifest();
-
+        
         if (!isset($revManifest[$name])) {
             return;
         }
@@ -31,7 +31,7 @@ class CacheBust
      */
     public static function getRevManifest()
     {
-        $jsonPath = SKYFISHINTEGRATION_PATH . apply_filters('SkyfishIntegration/Helper/CacheBust/RevManifestPath', 'dist/rev-manifest.json');
+        $jsonPath = SKYFISHINTEGRATION_PATH . apply_filters('SkyfishIntegration/Helper/CacheBust/RevManifestPath', 'dist/manifest.json');
 
         if (file_exists($jsonPath)) {
             return json_decode(file_get_contents($jsonPath), true);

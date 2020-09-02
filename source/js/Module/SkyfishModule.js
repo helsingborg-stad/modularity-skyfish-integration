@@ -63,6 +63,7 @@ export default class extends React.Component {
                     type: media.media_type,
                     mimeType: media.file_mimetype,
                     fileName: media.filename,
+                    title: media.title,
                     thumbnail: media.thumbnail_url_ssl || media.thumbnail_url,
                     index: index,
                     sizes: this.getSizes(
@@ -186,7 +187,7 @@ export default class extends React.Component {
             '/search',
             {
                 folder_ids: this.props.api.rootFolder,
-                return_values: ['thumbnail_url_ssl'],
+                return_values: ['thumbnail_url_ssl', 'title'],
                 thumbnail_size: '800px',
                 unique_media_id: media.id,
             },
@@ -387,7 +388,7 @@ export default class extends React.Component {
         let detailsData = {};
         if (typeof posts[currentPost] != 'undefined') {
             detailsData = {
-                title: posts[currentPost].fileName || '',
+                title: posts[currentPost].title || posts[currentPost].fileName || '',
                 preview: posts[currentPost].thumbnail_large || '',
                 description: posts[currentPost].description || '',
                 keywords: posts[currentPost].keywords || '',
@@ -402,6 +403,7 @@ export default class extends React.Component {
                     [translation.size]: formatBytes(posts[currentPost].fileSize) || '',
                     [translation.photographer]: posts[currentPost].photographer || '',
                     [translation.fileType]: posts[currentPost].mimeType || '',
+                    [translation.fileName]: posts[currentPost].fileName || '',
                 },
             };
         }
@@ -441,9 +443,9 @@ export default class extends React.Component {
                                 return {
                                     index: media.index,
                                     type: media.type,
-                                    title: media.fileName,
+                                    title: media.title || media.fileName,
                                     id: media.id,
-                                    imageSrc: media.thumbnail,
+                                    imageSrc: media.thumbnail, 
                                 };
                             }),
                             hits: hits,
