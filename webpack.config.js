@@ -31,7 +31,7 @@ module.exports = {
      * Output settings
      */
     output: {
-        filename: ifProduction('[name].min.js', '[name].min.js'),
+        filename: ifProduction('[name].[contenthash].min.js', '[name].[contenthash].min.js'),
         path: path.resolve(__dirname, 'dist'),
     },
     /**
@@ -60,26 +60,6 @@ module.exports = {
                     ],
                 },
                 },
-            },
-            
-            /**
-             * Scripts
-             */
-            {
-                test: /\.js$/,
-                exclude: /(node_modules)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        // Babel config goes here
-                        presets: ['@babel/preset-env'],
-                        plugins: [
-                            '@babel/plugin-syntax-dynamic-import',
-                            '@babel/plugin-proposal-export-default-from',
-                            '@babel/plugin-proposal-class-properties',
-                        ],
-                    }
-                }
             },
             
             /**
