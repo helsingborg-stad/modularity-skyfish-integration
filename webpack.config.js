@@ -12,10 +12,11 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const {getIfUtils, removeEmpty} = require('webpack-config-utils');
 const {ifProduction, ifNotProduction} = getIfUtils(process.env.NODE_ENV);
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     mode: ifProduction('production', 'development'),
+
     /**
      * Add your entry files here
      */
@@ -52,10 +53,10 @@ module.exports = {
                     // Babel config here
                     presets: ['@babel/preset-env', '@babel/preset-react'],
                     plugins: [
-                    '@babel/plugin-syntax-dynamic-import',
-                    '@babel/plugin-proposal-export-default-from',
-                    '@babel/plugin-proposal-class-properties',
-                    'react-hot-loader/babel',
+                        '@babel/plugin-syntax-dynamic-import',
+                        '@babel/plugin-proposal-export-default-from',
+                        '@babel/plugin-proposal-class-properties',
+                        'react-hot-loader/babel',
                     ],
                 },
                 },
@@ -220,7 +221,10 @@ module.exports = {
             cssProcessorPluginOptions: {
                 preset: ['default', {discardComments: {removeAll: true}}],
             },
-        }))
+        })),
+
+        new BundleAnalyzerPlugin()
+
     ]).filter(Boolean),
     devtool: ifProduction('none', 'eval-source-map'),
     stats: {children: false}

@@ -43,12 +43,16 @@ class Skyfish extends \Modularity\Module
 
     public function scriptData()
     {
+        //Bail if no data object id available.
+        if(empty($this->data)) {
+            return; 
+        }
+
         $data = array();
         $data['nonce'] = wp_create_nonce('skyfishIntegration');
 
         $api = new \SkyfishIntegration\Api();
         $api->authenticate();
-
 
         //Skyfish API Settings
         $data['apiSettings'] = array(
